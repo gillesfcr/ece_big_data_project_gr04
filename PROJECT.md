@@ -30,8 +30,8 @@ Nothing has to be installed on the host besides Docker: every step runs inside t
 ### 1. Configure and start the environment
 
 ```bash
-git clone https://github.com/gillesfcr/ece-big-data-project-gr-04.git
-cd ece-big-data-project-gr-04
+git clone https://github.com/gillesfcr/ece_big_data_project_gr04.git
+cd ece_big_data_project_gr04
 cp .env.example .env
 ```
 
