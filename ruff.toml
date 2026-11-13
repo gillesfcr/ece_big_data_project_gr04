@@ -8,4 +8,4 @@ select = ["E", "F", "W", "I", "N", "B", "UP"]
 ignore = ["N812", "UP038"]
 
 [lint.isort]
-known-first-party = ["config", "spark_utils", "datasets", "explore_people", "wikimedia_client"]
+known-first-party = ["config", "spark_utils", "datasets", "wikimedia_client"]

@@ -56,7 +56,7 @@ def main() -> None:
         ingest(spark, table)
 
     counts = None
-    for table in tables:
+    for table in IMDB_TABLES:
         df = read_table(spark, "bronze", table)
         row = df.agg(
             F.lit(table).alias("table"),

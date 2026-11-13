@@ -27,11 +27,19 @@
 
 Nothing has to be installed on the host besides Docker: every step runs inside the containers.
 
-### 1. Start the environment
+### 1. Configure and start the environment
 
 ```bash
 git clone https://github.com/gillesfcr/ece-big-data-project-gr-04.git
 cd ece-big-data-project-gr-04
+cp .env.example .env
+```
+
+Edit `.env` and set `WIKIMEDIA_CONTACT` to a contact email: it is sent in the
+User-Agent of the requests to the Wikimedia APIs, as required by their
+[User-Agent policy](https://meta.wikimedia.org/wiki/User-Agent_policy). Then:
+
+```bash
 docker compose up -d --build
 ```
 
@@ -48,16 +56,17 @@ variable (default `8g`), for example `SPARK_DRIVER_MEMORY=6g docker compose up -
 docker compose exec spark bash scripts/run_all.sh
 ```
 
-This runs, in order:
+This runs the scripts of `scripts/steps/` in alphabetical order:
 
-1. `jobs/download_imdb.py`: downloads the seven IMDb files (about 1.9 GB) into `data/raw`.
-   Files already downloaded are skipped.
-2. `jobs/bronze_ingest.py`: converts each TSV file to Parquet (`data/bronze`) without
-   changing any value and writes `results/bronze_row_counts.md`.
+| Step | Job | Output |
+| --- | --- | --- |
+| `10_download_imdb` | `jobs/download_imdb.py`: downloads the seven IMDb files (about 1.9 GB, resumable) | `data/raw` |
+| `20_bronze` | `jobs/bronze_ingest.py`: converts each TSV file to Parquet without changing any value | `data/bronze`, `results/bronze_row_counts.md` |
 
-A single job can be run with:
+A single step or job can be run with:
 
 ```bash
+docker compose exec spark bash scripts/steps/<step>.sh
 docker compose exec spark bash scripts/spark_submit.sh jobs/<job>.py
 ```
 

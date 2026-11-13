@@ -30,6 +30,7 @@ services:
       SPARK_DRIVER_MEMORY: ${SPARK_DRIVER_MEMORY:-8g}
       SPARK_SHUFFLE_PARTITIONS: ${SPARK_SHUFFLE_PARTITIONS:-200}
       KAFKA_BOOTSTRAP: kafka:19092
+      WIKIMEDIA_CONTACT: ${WIKIMEDIA_CONTACT:-}
     volumes:
       - .:/home/jovyan/project
       - imdb-data:/home/jovyan/project/data
