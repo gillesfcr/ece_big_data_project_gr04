@@ -78,6 +78,8 @@ Most extreme films of each genre (the full list of films is in
 
 {{table:explore_q6_language_coverage}}
 
+{{table:explore_q6_successful_films_by_language}}
+
 At least two languages:
 
 {{table:explore_q6_actors_2plus_languages}}
@@ -151,6 +153,10 @@ Sliding windows (10 minutes, every 5 minutes), most edited entity:
 Delay between the event time and its arrival in Kafka:
 
 {{table:stream_latency}}
+
+Late events and rows dropped by the watermark:
+
+{{table:stream_late_events}}
 
 ### 4.1 Late arriving data
 
