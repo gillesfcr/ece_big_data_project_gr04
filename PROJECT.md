@@ -22,7 +22,9 @@
 ### Prerequisites
 
 - [Docker Desktop](https://docs.docker.com/get-docker/) (or Docker Engine with the Compose plugin)
-- At least 12 GB of memory allocated to Docker and 15 GB of free disk space
+- 8 GB of memory allocated to Docker recommended (5 GB minimum, see
+  [Low-memory machines](#low-memory-machines-8-gb-ram)) and 25 GB of free disk space
+  (the decompressed IMDb files alone take about 10 GB)
 - An internet connection (IMDb download, Wikipedia/Wikidata APIs, Wikimedia event stream)
 
 Nothing has to be installed on the host besides Docker: every step runs inside the containers.
@@ -47,8 +49,29 @@ The first build downloads the Spark image (about 2 GB). Jupyter is available at
 <http://localhost:8888> (the token is printed by `docker logs imdb_spark`) and the
 Spark UI of a running job at <http://localhost:4040>.
 
-The memory given to the Spark driver can be changed with the `SPARK_DRIVER_MEMORY`
-variable (default `8g`), for example `SPARK_DRIVER_MEMORY=6g docker compose up -d`.
+By default the Spark driver gets 60% of the memory available to the container
+(between 2 GB and 8 GB). It can be set with `SPARK_DRIVER_MEMORY` in `.env`.
+
+#### Low-memory machines (8 GB RAM)
+
+Set in `.env`:
+
+```bash
+SPARK_DRIVER_MEMORY=3g
+SPARK_SHUFFLE_PARTITIONS=32
+```
+
+On Windows (WSL2 backend of Docker Desktop), limit the memory of the WSL2 VM
+and give it some swap with a file `%UserProfile%\.wslconfig`:
+
+```ini
+[wsl2]
+memory=5GB
+swap=4GB
+```
+
+then run `wsl --shutdown` and restart Docker Desktop. The jobs are slower
+(more data spilled to disk) but complete.
 
 ### 2. Run the batch pipeline
 
@@ -61,7 +84,7 @@ This runs the scripts of `scripts/steps/` in alphabetical order:
 | Step | Job | Output |
 | --- | --- | --- |
 | `10_download_imdb` | `jobs/download_imdb.py`: downloads the seven IMDb files (about 1.9 GB, resumable) | `data/raw` |
-| `20_bronze` | `jobs/bronze_ingest.py`: converts each TSV file to Parquet without changing any value | `data/bronze`, `results/bronze_row_counts.md` |
+| `20_bronze` | `jobs/bronze_ingest.py`: decompresses each file once (`data/raw/tsv`) and converts it to Parquet without changing any value | `data/bronze`, `results/bronze_row_counts.md` |
 
 A single step or job can be run with:
 

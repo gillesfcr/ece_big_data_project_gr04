@@ -1,41 +1,52 @@
 """Bronze layer: convert the raw IMDb TSV files to Parquet without changing values.
 
-The files are read as plain text and split on tabs ourselves instead of using
-the CSV reader, because IMDb does not quote its fields (titles contain quotes)
-and we want to keep the raw '\\N' markers and empty strings for the data
-quality analysis. Lines whose number of fields does not match the header are
-kept and flagged with `_malformed` so that nothing is silently dropped.
+1. Each `.tsv.gz` file is decompressed once to data/raw/tsv/<table>.tsv
+   (several files in parallel). A gzip file cannot be split, so Spark would
+   read it with a single task; the decompressed file is split by Spark into
+   blocks read by all the cores.
+2. The files are read as plain text and split on tabs ourselves instead of
+   using the CSV reader, because IMDb does not quote its fields (titles
+   contain quotes) and we want to keep the raw '\\N' markers and empty strings
+   for the data quality analysis. Lines whose number of fields does not match
+   the header are kept and flagged with `_malformed` so that nothing is
+   silently dropped.
 """
 
-import gzip
+import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
 from pyspark.sql import functions as F
 
 from config import IMDB_TABLES, RAW_DIR
 from spark_utils import get_spark, read_table, save_result, write_table
 
-# One partition for roughly every 16 MB of compressed input.
-MB_PER_PARTITION = 16
+TSV_DIR = RAW_DIR / "tsv"
+PARALLEL_DECOMPRESSIONS = 4
+
+
+def decompress(table: str) -> str:
+    """Decompress <table>.tsv.gz to data/raw/tsv/<table>.tsv (skipped if up to date)."""
+    source = RAW_DIR / f"{table}.tsv.gz"
+    target = TSV_DIR / f"{table}.tsv"
+    if target.exists() and target.stat().st_mtime >= source.stat().st_mtime:
+        return f"[skip] {target.name} already decompressed"
+    partial = target.with_suffix(".tsv.part")
+    with open(partial, "wb") as out:
+        subprocess.run(["gzip", "-dc", str(source)], stdout=out, check=True)
+    partial.replace(target)
+    return f"[decompressed] {target.name} ({target.stat().st_size / 1e9:.1f} GB)"
 
 
 def read_header(path) -> list[str]:
-    with gzip.open(path, "rt", encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         return f.readline().rstrip("\n").split("\t")
 
 
 def ingest(spark, table: str) -> None:
-    path = RAW_DIR / f"{table}.tsv.gz"
+    path = TSV_DIR / f"{table}.tsv"
     header = read_header(path)
-    partitions = max(4, path.stat().st_size // (MB_PER_PARTITION * 1024 * 1024))
-
-    # gzip is not splittable: the file is decompressed by a single task,
-    # the repartition spreads the parsing and the Parquet write.
-    lines = (
-        spark.read.text(str(path))
-        .repartition(int(partitions))
-        .filter(F.col("value") != "\t".join(header))
-    )
+    lines = spark.read.text(str(path)).filter(F.col("value") != "\t".join(header))
     fields = F.split(F.col("value"), "\t", -1)
     is_malformed = F.size(fields) != len(header)
 
@@ -51,6 +62,11 @@ def ingest(spark, table: str) -> None:
 def main() -> None:
     # Optional arguments: names of the tables to (re)ingest, default all.
     tables = sys.argv[1:] or IMDB_TABLES
+    TSV_DIR.mkdir(parents=True, exist_ok=True)
+    with ThreadPoolExecutor(max_workers=PARALLEL_DECOMPRESSIONS) as pool:
+        for message in pool.map(decompress, tables):
+            print(message, flush=True)
+
     spark = get_spark("bronze_ingest")
     for table in tables:
         ingest(spark, table)
