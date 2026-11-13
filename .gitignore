@@ -1,0 +1,20 @@
+# datasets, intermediate tables and spark checkpoints (rebuilt by the pipeline)
+data/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.ruff_cache/
+
+# jupyter
+.ipynb_checkpoints/
+
+# local environment overrides
+.env
+
+# editors / os
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
