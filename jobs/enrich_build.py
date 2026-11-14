@@ -235,7 +235,26 @@ def main() -> None:
                               "source string, records_rejected_by_schema long"),
         "enrich_schema_rejections")
 
-    sample_films = films.filter(F.col("synopsis").isNotNull()).orderBy(F.desc("num_votes"))
+    # Quality of the cleaning: texts that still contain wiki markup.
+    quality = None
+    for record_type, df, text in [("film synopsis", films, "synopsis"),
+                                  ("principal biography", people, "biography")]:
+        rows = df.filter(F.col(text).isNotNull()).agg(
+            F.lit(record_type).alias("text"),
+            F.count("*").alias("records"),
+            F.sum(F.col(text).contains("{{").cast("int")).alias("with_template_braces"),
+            F.sum(F.col(text).contains("[[").cast("int")).alias("with_link_brackets"),
+            F.sum(F.col(text).contains("|").cast("int")).alias("with_pipe"),
+            F.sum(F.col(text).rlike(r"<[a-zA-Z/][^>]*>").cast("int")).alias("with_html_tag"),
+            F.sum((F.col(text).contains("{{") | F.col(text).contains("[[")
+                   | F.col(text).contains("|") | F.col(text).rlike(r"<[a-zA-Z/][^>]*>"))
+                  .cast("int")).alias("with_any_markup"))
+        quality = rows if quality is None else quality.unionByName(rows)
+    save_result(quality.withColumn("clean_pct",
+                                   100.0 - 100.0 * F.col("with_any_markup") / F.col("records")),
+                "enrich_cleaning_quality")
+
+    sample_films =films.filter(F.col("synopsis").isNotNull()).orderBy(F.desc("num_votes"))
     save_result(
         sample_films.select("tconst", "primary_title", "start_year", "synopsis_section",
                             F.concat(F.substring("synopsis", 1, 220), F.lit("..."))
