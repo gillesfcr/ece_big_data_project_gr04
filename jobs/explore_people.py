@@ -50,6 +50,9 @@ LANGUAGE_VARIANTS = {
 MIN_CAREER_YEARS = 20
 MIN_CAREER_FILMS = 15
 EARLY_CAREER_FRACTION = 1 / 3   # first third of the career span
+# A phase average needs several films: with 1-2 films, a single badly rated
+# film (e.g. after a long gap) would decide the comparison.
+MIN_FILMS_PER_PHASE = 3
 
 # Q8
 CREATIVE_ROLES = {"actor": "actor", "actress": "actor", "director": "director",
@@ -195,11 +198,13 @@ def q7_early_peak(spark) -> None:
     result = (
         career.join(best, "nconst").join(phases, "nconst").join(names(spark), "nconst")
         .filter((F.col("best_film_phase") == "early")
+                & (F.col("early_n") >= MIN_FILMS_PER_PHASE)
+                & (F.col("late_n") >= MIN_FILMS_PER_PHASE)
                 & (F.col("early_avg") > F.col("late_avg")))
         .withColumn("early_minus_late", F.col("early_avg") - F.col("late_avg"))
         .select("nconst", "primary_name", "first_year", "last_year", "films",
-                "best_film", "best_film_year", "best_rating", "early_avg", "late_avg",
-                "early_minus_late")
+                "best_film", "best_film_year", "best_rating", "early_n", "early_avg",
+                "late_n", "late_avg", "early_minus_late")
         .orderBy(F.desc("early_minus_late"))
     )
     write_table(result, "gold", "q7_early_peak_actors")
