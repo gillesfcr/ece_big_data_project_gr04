@@ -76,6 +76,41 @@ def q1_runtime_outliers(spark) -> None:
         .filter("rk <= 3").drop("rk").orderBy("genre", F.desc(F.abs("z_score")))
     )
     save_result(top3, "explore_q1_most_extreme_per_genre")
+    q1_rule_comparison(films)
+
+
+def q1_rule_comparison(films) -> None:
+    """Number of outliers per genre with the z-score rule and two robust rules.
+
+    - MAD: |runtime - median| > 3 x 1.4826 x MAD (median absolute deviation),
+    - IQR: runtime outside [Q1 - 1.5 x IQR, Q3 + 1.5 x IQR] (Tukey fences).
+    """
+    quartiles = films.groupBy("genre").agg(
+        F.expr("percentile_approx(runtime_minutes, 0.25)").alias("q1"),
+        F.expr("percentile_approx(runtime_minutes, 0.5)").alias("median"),
+        F.expr("percentile_approx(runtime_minutes, 0.75)").alias("q3"))
+    films = films.join(quartiles, "genre")
+    mad = films.groupBy("genre").agg(
+        F.expr("percentile_approx(abs(runtime_minutes - median), 0.5)").alias("mad"))
+    films = films.join(mad, "genre")
+    robust_scale = 1.4826 * F.col("mad")
+    iqr = F.col("q3") - F.col("q1")
+    flags = {
+        "z": F.abs("z_score") > Z_THRESHOLD,
+        "mad": F.abs(F.col("runtime_minutes") - F.col("median")) > Z_THRESHOLD * robust_scale,
+        "iqr": (F.col("runtime_minutes") < F.col("q1") - 1.5 * iqr)
+        | (F.col("runtime_minutes") > F.col("q3") + 1.5 * iqr),
+    }
+    shorter = F.col("runtime_minutes") < F.col("median")
+    aggregations = [F.count("*").alias("feature_films"), F.first("median").alias("median"),
+                    F.first("mad").alias("mad")]
+    for name, flag in flags.items():
+        aggregations += [
+            F.sum((flag & ~shorter).cast("int")).alias(f"{name}_longer"),
+            F.sum((flag & shorter).cast("int")).alias(f"{name}_shorter"),
+        ]
+    comparison = films.groupBy("genre").agg(*aggregations).orderBy("genre")
+    save_result(comparison, "explore_q1_rule_comparison")
 
 
 def genre_year_popularity(spark):
@@ -164,14 +199,18 @@ def q5_series_worst_last_best_first(spark) -> None:
         .groupBy("parent_tconst").agg(F.count("*").alias("long_seasons"))
         .filter(F.col("long_seasons") >= MIN_LONG_SEASONS)
     )
+    # The last season comes from all the episodes, before the vote filter: a
+    # recent or little voted last season must not be replaced by an earlier one.
+    last_seasons = episodes.groupBy("parent_tconst").agg(
+        F.max("season_number").alias("last_season"))
     rated = (
         episodes.join(long_seasons, "parent_tconst", "left_semi")
         .filter(F.col("num_votes") >= MIN_EPISODE_VOTES)
+        .join(last_seasons, "parent_tconst")
     )
     series_window = Window.partitionBy("parent_tconst")
     rated = (
-        rated.withColumn("last_season", F.max("season_number").over(series_window))
-        .withColumn("min_rating", F.min("average_rating").over(series_window))
+        rated.withColumn("min_rating", F.min("average_rating").over(series_window))
         .withColumn("max_rating", F.max("average_rating").over(series_window))
     )
     # Ties are handled strictly: every episode sharing the worst rating must be
