@@ -54,6 +54,10 @@ Most extreme films of each genre (the full list of films is in
 
 {{table:explore_q1_most_extreme_per_genre}}
 
+Comparison with robust outlier rules:
+
+{{table:explore_q1_rule_comparison}}
+
 ### 2.2 Top three most popular genres per year (1980-2025)
 
 {{table:explore_q2_top3_genres_by_year}}
@@ -113,6 +117,8 @@ Scope:
 Coverage:
 
 {{table:enrich_coverage}}
+
+{{table:enrich_cleaning_quality}}
 
 {{table:enrich_notes}}
 
@@ -177,6 +183,8 @@ Late events and rows dropped by the watermark:
 {{table:open_q_by_collaboration_number}}
 
 {{table:open_q_first_vs_later}}
+
+{{table:open_q_baseline_sensitivity}}
 
 {{table:open_q_improvement_by_decade}}
 
