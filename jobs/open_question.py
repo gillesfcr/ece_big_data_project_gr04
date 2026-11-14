@@ -1,12 +1,19 @@
 """Open question: do director-actor pairs make better films when they work together again?
 
 For every (director, actor/actress) pair, the films they made together are
-ordered by release year. The rating of each film is compared to
-- the raw IMDb rating,
-- a baseline = average rating of the director's and of the actor's OTHER
-  films (the film itself is excluded), to control for the talent of the two
-  people: residual = rating - baseline.
-The residual is aggregated by collaboration number (1st, 2nd, 3rd...).
+ordered by release year. The rating of each film is compared to a baseline
+that controls for the talent of the two people: residual = rating - baseline.
+
+- main baseline ("prior"): average rating of the films the director and the
+  actor released BEFORE this film (earlier years only), i.e. what could be
+  expected when the film was made; films without earlier films for both
+  people are left out,
+- sensitivity baseline ("leave-one-out"): average rating of all their OTHER
+  films, past and future.
+The residual is aggregated by collaboration number (1st, 2nd, 3rd...). Pairs
+that work together again are not random (they often re-team because the
+first film worked): first films of repeat pairs are also compared with the
+films of one-off pairs to show this selection effect.
 """
 
 from pyspark.sql import Window
@@ -20,8 +27,15 @@ MAX_BUCKET = 5           # collaborations 5, 6, 7... are grouped as "5+"
 TOP_PAIRS_MIN_FILMS = 6
 
 
+def prior_avg(key: str):
+    """Average rating of the films of the same person released in earlier years."""
+    window = (Window.partitionBy(key).orderBy("start_year")
+              .rangeBetween(Window.unboundedPreceding, -1))
+    return F.avg("average_rating").over(window)
+
+
 def leave_one_out_avg(key: str):
-    """Average rating of the other films of the same person."""
+    """Average rating of the other films of the same person (past and future)."""
     window = Window.partitionBy(key)
     total = F.sum("average_rating").over(window)
     count = F.count("average_rating").over(window)
@@ -38,17 +52,19 @@ def main() -> None:
     directors = (
         read_table(spark, "silver", "title.crew")
         .select("tconst", F.explode("directors").alias("director"))
-        .join(films.select("tconst", "average_rating"), "tconst")
-        .withColumn("director_baseline", leave_one_out_avg("director"))
-        .drop("average_rating")
+        .join(films.select("tconst", "average_rating", "start_year"), "tconst")
+        .withColumn("director_prior", prior_avg("director"))
+        .withColumn("director_loo", leave_one_out_avg("director"))
+        .drop("average_rating", "start_year")
     )
     actors = (
         read_table(spark, "silver", "title.principals")
         .filter(F.col("category").isin(*ACTOR_CATEGORIES))
         .select("tconst", F.col("nconst").alias("actor")).distinct()
-        .join(films.select("tconst", "average_rating"), "tconst")
-        .withColumn("actor_baseline", leave_one_out_avg("actor"))
-        .drop("average_rating")
+        .join(films.select("tconst", "average_rating", "start_year"), "tconst")
+        .withColumn("actor_prior", prior_avg("actor"))
+        .withColumn("actor_loo", leave_one_out_avg("actor"))
+        .drop("average_rating", "start_year")
     )
     pair_window = Window.partitionBy("director", "actor")
     pairs = (
@@ -58,8 +74,10 @@ def main() -> None:
         .withColumn("collaboration", F.row_number().over(
             pair_window.orderBy("start_year", "tconst")))
         .withColumn("pair_films", F.count("*").over(pair_window))
-        .withColumn("baseline", (F.col("director_baseline") + F.col("actor_baseline")) / 2)
+        .withColumn("baseline", (F.col("director_prior") + F.col("actor_prior")) / 2)
         .withColumn("residual", F.col("average_rating") - F.col("baseline"))
+        .withColumn("baseline_loo", (F.col("director_loo") + F.col("actor_loo")) / 2)
+        .withColumn("residual_loo", F.col("average_rating") - F.col("baseline_loo"))
         .withColumn("bucket", F.when(F.col("collaboration") >= MAX_BUCKET, f"{MAX_BUCKET}+")
                     .otherwise(F.col("collaboration").cast("string")))
     )
@@ -90,6 +108,16 @@ def main() -> None:
         "film_of_pair", F.lit("one-off pairs"))
     save_result(summary(first_vs_later.unionByName(one_off).groupBy("film_of_pair"))
                 .orderBy("film_of_pair"), "open_q_first_vs_later")
+
+    # Sensitivity: same groups with the leave-one-out baseline (which also
+    # uses the films released after each film).
+    save_result(
+        first_vs_later.unionByName(one_off).groupBy("film_of_pair")
+        .agg(F.count("*").alias("pair_films"),
+             F.avg("residual").alias("avg_residual_prior_baseline"),
+             F.avg("residual_loo").alias("avg_residual_leave_one_out"))
+        .orderBy("film_of_pair"),
+        "open_q_baseline_sensitivity")
 
     # Paired difference: for each repeat pair, mean residual of later films
     # minus residual of the first film.
