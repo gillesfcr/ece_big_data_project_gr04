@@ -7,7 +7,8 @@
 #    background; LATE_RATIO (default 0.02) of the events are published
 #    LATE_MINUTES (default 5) minutes late to exercise the watermark,
 # 3. runs the Spark Structured Streaming job for <minutes> + 3 minutes,
-# 4. summarises the run in results/stream_*.md.
+# 4. summarises the run in results/stream_*.md,
+# 5. rebuilds REPORT.md (error if a result table is missing).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -35,3 +36,7 @@ tail -n 2 data/logs/producer.log
 echo "Summarising the run"
 bash scripts/spark_submit.sh jobs/stream_report.py
 echo "Streaming results are in results/stream_*.md"
+
+# Final report: fails if any result table is still missing.
+echo "Rebuilding REPORT.md"
+python jobs/build_report.py
