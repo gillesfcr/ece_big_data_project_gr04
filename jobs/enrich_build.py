@@ -254,7 +254,7 @@ def main() -> None:
                                    100.0 - 100.0 * F.col("with_any_markup") / F.col("records")),
                 "enrich_cleaning_quality")
 
-    sample_films =films.filter(F.col("synopsis").isNotNull()).orderBy(F.desc("num_votes"))
+    sample_films = films.filter(F.col("synopsis").isNotNull()).orderBy(F.desc("num_votes"))
     save_result(
         sample_films.select("tconst", "primary_title", "start_year", "synopsis_section",
                             F.concat(F.substring("synopsis", 1, 220), F.lit("..."))
