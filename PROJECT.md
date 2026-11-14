@@ -106,7 +106,7 @@ This runs the scripts of `scripts/steps/` in alphabetical order:
 | `63_enrich_build` | `enrich_build.py`: synopses, biographies, lineage, notes | `data/gold/enriched_*`, `results/enrich_*.md` | ~1 min |
 | `70_explore_people` | `explore_people.py`: Q4, Q6, Q7, Q8 | `results/explore_q4*` to `explore_q8*` | ~2 min |
 | `80_open_question` | `open_question.py`: director-actor collaborations | `results/open_q_*.md` | ~1 min |
-| `90_build_report` | `build_report.py --allow-missing`: draft of `REPORT.md` (the streaming tables come with step 3) | `REPORT.md` | < 1 s |
+| `90_build_report` | `build_report.py --allow-missing`: draft of `REPORT.md` (the streaming tables come with [section 3](#3-run-the-streaming-test) below) | `REPORT.md` | < 1 s |
 
 \* measured on a 16-thread laptop with 16 GB given to Docker and a ~1-2 MB/s
 connection; the download and the two Wikimedia steps depend on the network.
