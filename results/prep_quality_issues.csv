@@ -1,0 +1,18 @@
+table,issue,handling,rows,pct_of_table
+name.basics,alive_older_than_max_lifespan,"row kept, flagged",2794,0.017665649448138136
+name.basics,missing_name,"row kept, flagged",293,0.0018525537896580079
+name.basics,orphan_known_for_title,"row kept, flagged",67,0.0004236215150412509
+name.basics,death_before_birth,"row kept, flagged",28,0.00017703585703216456
+name.basics,probable_bc_dates,"row kept, flagged",18,0.00011380876523496294
+name.basics,implausible_lifespan,"row kept, flagged",2,1.2645418359440327e-05
+title.akas,orphan_tconst,row moved to quarantine,8,1.3239618459351277e-05
+title.basics,start_year_in_future,"row kept, flagged",6238,0.04812116474201293
+title.basics,extreme_runtime,"row kept, flagged",210,0.0016199814998112722
+title.basics,non_positive_runtime,"row kept, flagged",4,3.085679047259566e-05
+title.crew,orphan_writer,"row kept, flagged",786,0.0060633593278650475
+title.crew,orphan_director,"row kept, flagged",405,0.0031242500353503106
+title.episode,non_positive_episode_number,"row kept, flagged",7130,0.07105233288326879
+title.episode,orphan_parent_tconst,row moved to quarantine,5,4.982629556838948e-05
+title.principals,credited_long_after_death,"row kept, flagged",158799,0.15455026485099196
+title.principals,orphan_nconst,row moved to quarantine,7262,0.0070672025958724615
+title.principals,credited_before_birth,"row kept, flagged",3109,0.0030258173755611435

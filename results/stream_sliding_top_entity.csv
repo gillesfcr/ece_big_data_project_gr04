@@ -1,0 +1,5 @@
+window_start,window_end,entity_type,imdb_name,edits,bytes_changed
+2026-11-14 15:45:00,2026-11-14 15:55:00,person,Skip Hinnant,1,135
+2026-11-14 15:50:00,2026-11-14 16:00:00,person,Jack McGee,1,231
+2026-11-14 15:55:00,2026-11-14 16:05:00,film,The Beyond,3,30
+2026-11-14 16:00:00,2026-11-14 16:10:00,film,The Beyond,3,30

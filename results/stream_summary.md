@@ -1,0 +1,3 @@
+| first_event | last_event | matched_events | distinct_imdb_entities | distinct_pages | bot_edits | all_events | match_rate_pct |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-11-14 15:50:24 | 2026-11-14 16:14:42 | 63 | 55 | 55 | 18 | 2370 | 2.66 |

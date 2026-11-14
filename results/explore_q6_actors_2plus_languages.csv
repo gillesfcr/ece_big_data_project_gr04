@@ -1,0 +1,626 @@
+nconst,primary_name,languages,language_list,successful_films
+nm0695177,Prakash Raj,4,Hindi;Kannada;Tamil;Telugu,24
+nm0896573,Ashish Vidyarthi,4,Hindi;Malayalam;Tamil;Telugu,7
+nm0004486,Bruno Ganz,4,English;German;Greek;Italian,6
+nm8179407,Sobhita Dhulipala,4,Hindi;Malayalam;Tamil;Telugu,5
+nm0626259,Franco Nero,4,English;German;Italian;Spanish,4
+nm0000821,Amitabh Bachchan,3,English;Hindi;Telugu,26
+nm0621937,Nassar,3,Hindi;Tamil;Telugu,21
+nm0000329,Jackie Chan,3,Cantonese;English;Mandarin Chinese,17
+nm0001884,Max von Sydow,3,English;French;Swedish,13
+nm0000366,Catherine Deneuve,3,English;French;Spanish,11
+nm0004569,Sanjay Dutt,3,Hindi;Kannada;Tamil,11
+nm1335704,Fahadh Faasil,3,Malayalam;Tamil;Telugu,10
+nm0534856,Madhavan,3,English;Hindi;Tamil,10
+nm0000579,Ron Perlman,3,English;French;artistic language,10
+nm0700869,Amrish Puri,3,English;Hindi;Tamil,9
+nm0603402,Jeanne Moreau,3,English;French;Italian,9
+nm0482320,Mohanlal,3,Hindi;Malayalam;Tamil,9
+nm0947447,Donnie Yen,3,Cantonese;English;Mandarin Chinese,8
+nm0000606,Jean Reno,3,English;French;Italian,8
+nm0000706,Michelle Yeoh,3,Cantonese;English;Mandarin Chinese,8
+nm0001321,Richard Harris,3,English;Italian;Russian,8
+nm0000334,Yun-Fat Chow,3,Cantonese;English;Mandarin Chinese,8
+nm3132784,Kishore Kumar G.,3,Kannada;Malayalam;Tamil,7
+nm0000420,Valeria Golino,3,English;French;Italian,7
+nm1208167,Diane Kruger,3,English;French;German,6
+nm0000254,Isabelle Adjani,3,English;French;German,6
+nm0001472,Jet Li,3,Cantonese;English;Mandarin Chinese,6
+nm0000365,Julie Delpy,3,English;French;German,6
+nm2570245,Kajal Aggarwal,3,Hindi;Tamil;Telugu,6
+nm0002000,Leslie Cheung,3,Cantonese;English;Mandarin Chinese,6
+nm1302330,Murli Sharma,3,Hindi;Tamil;Telugu,6
+nm3559559,Rao Ramesh,3,Kannada;Tamil;Telugu,6
+nm0000442,Rutger Hauer,3,Dutch;English;German,6
+nm0451561,Sachin Khedekar,3,Hindi;Tamil;Telugu,6
+nm0040545,Féodor Atkine,3,English;French;Spanish,5
+nm0267042,Golshifteh Farahani,3,English;French;Persian,5
+nm0091035,Kim Bodnia,3,Danish;English;Hindi,5
+nm0434263,Kishore Kadam,3,Hindi;Marathi;Tamil,5
+nm0774386,Matthias Schoenaerts,3,Belgian Dutch;English;French,5
+nm0269419,Pierfrancesco Favino,3,English;French;Italian,5
+nm1004887,Pradeep Singh Rawat,3,Hindi;Tamil;Telugu,5
+nm0764877,R. Sarathkumar,3,Kannada;Tamil;Telugu,5
+nm0025627,Tinnu Anand,3,Hindi;Tamil;Telugu,5
+nm0075321,Christian Berkel,3,English;French;German,4
+nm0645402,Eiji Okada,3,English;French;Japanese,4
+nm0704719,Francisco Rabal,3,English;Italian;Spanish,4
+nm0660327,Irene Papas,3,English;French;Italian,4
+nm0419688,Jayaram,3,Kannada;Tamil;Telugu,4
+nm0003508,Michel Blanc,3,English;French;Italian,4
+nm5114849,Rakul Preet Singh,3,Hindi;Tamil;Telugu,4
+nm2281292,Rana Daggubati,3,Hindi;Tamil;Telugu,4
+nm0000591,Roman Polanski,3,English;French;Polish,4
+nm0474871,Sai Kumar,3,Kannada;Tamil;Telugu,4
+nm0811794,Shobana,3,Hindi;Malayalam;Tamil,4
+nm0470981,Thomas Kretschmann,3,English;German;Korean,4
+nm0845209,Aitana Sánchez-Gijón,3,English;Italian;Spanish,3
+nm0646037,Daniel Olbrychski,3,English;German;Russian,3
+nm0897808,José Luis de Vilallonga,3,English;French;Italian,3
+nm4442569,Joy Badlani,3,Hindi;Tamil;Telugu,3
+nm0098395,Miguel Bosé,3,French;Italian;Spanish,3
+nm3591550,Priya Anand,3,Hindi;Kannada;Tamil,3
+nm0849199,Raveena Tandon,3,Hindi;Kannada;Tamil,3
+nm7367695,Sai Pallavi,3,Hindi;Malayalam;Telugu,3
+nm0530365,Sergi López,3,French;Italian;Spanish,3
+nm0000804,Stéphane Audran,3,Danish;English;French,3
+nm0451600,Anupam Kher,2,English;Hindi,20
+nm0000142,Clint Eastwood,2,English;Italian,20
+nm0712546,Paresh Rawal,2,Hindi;Tamil,20
+nm0222426,Ajay Devgn,2,Hindi;Telugu,16
+nm0000020,Henry Fonda,2,English;Italian,16
+nm0001536,Toshirō Mifune,2,English;Japanese,16
+nm0787462,Naseeruddin Shah,2,English;Hindi,15
+nm0451234,Irrfan Khan,2,English;Hindi,14
+nm1224082,Boman Irani,2,Hindi;Telugu,13
+nm0586568,Mads Mikkelsen,2,Danish;English,13
+nm1596350,Nawazuddin Siddiqui,2,Hindi;Tamil,13
+nm0001745,Stellan Skarsgård,2,English;Norwegian,13
+nm0700875,Om Puri,2,English;Hindi,12
+nm0842770,Tilda Swinton,2,English;Italian,12
+nm0948000,Cem Yılmaz,2,English;Turkish,11
+nm0000218,Kristin Scott Thomas,2,English;French,11
+nm1126340,Ryūnosuke Kamiki,2,French;Japanese,11
+nm0000104,Antonio Banderas,2,English;Spanish,10
+nm0004335,Hrithik Roshan,2,Hindi;Tamil,10
+nm0509263,Nikolaj Lie Kaas,2,Danish;English,10
+nm3606487,Samantha Ruth Prabhu,2,Tamil;Telugu,10
+nm0795661,Saurabh Shukla,2,Hindi;Tamil,10
+nm0007102,Tabu,2,English;Hindi,10
+nm1799038,Vidya Balan,2,Hindi;Tamil,10
+nm0706787,Aishwarya Rai Bachchan,2,Hindi;Tamil,9
+nm0001648,Charlotte Rampling,2,English;French,9
+nm0001013,Harry Carey Jr.,2,English;Italian,9
+nm0000849,Javier Bardem,2,English;Spanish,9
+nm0001041,Maggie Cheung,2,Cantonese;Mandarin Chinese,9
+nm0002048,Melvyn Douglas,2,English;French,9
+nm1469236,Olivia Colman,2,Danish;English,9
+nm0004851,Penélope Cruz,2,English;Spanish,9
+nm0001352,Terence Hill,2,English;Italian,9
+nm1375534,Trisha Krishnan,2,Tamil;Telugu,9
+nm5724719,Achyuth Kumar,2,Kannada;Tamil,8
+nm0000063,Anthony Quinn,2,English;Italian,8
+nm0000472,Boris Karloff,2,English;Italian,8
+nm0103977,Brahmanandam,2,Tamil;Telugu,8
+nm0817881,Bud Spencer,2,English;Italian,8
+nm0000006,Ingrid Bergman,2,English;Swedish,8
+nm0004462,Jean-Louis Trintignant,2,French;Italian,8
+nm0451425,Kulbhushan Kharbanda,2,English;Hindi,8
+nm0000052,Marcello Mastroianni,2,French;Italian,8
+nm0638824,Michael Nyqvist,2,English;Swedish,8
+nm0438494,Rajat Kapoor,2,English;Hindi,8
+nm1198628,Sunil,2,Tamil;Telugu,8
+nm3966456,Taapsee Pannu,2,Hindi;Tamil,8
+nm0504897,Tony Leung Chiu-wai,2,Cantonese;Mandarin Chinese,8
+nm0704694,Vijay Raaz,2,English;Hindi,8
+nm0001128,Alain Delon,2,French;Italian,7
+nm1017633,Alia Bhatt,2,Hindi;Telugu,7
+nm1795232,Deepak Dobriyal,2,Hindi;Tamil,7
+nm1333687,Dhanush,2,Hindi;Tamil,7
+nm4921260,Dulquer Salmaan,2,Malayalam;Telugu,7
+nm0430746,Erland Josephson,2,English;Swedish,7
+nm0001036,Geraldine Chaplin,2,English;Spanish,7
+nm0045075,Jagapathi Babu,2,Tamil;Telugu,7
+nm0352032,Kamal Haasan,2,Hindi;Tamil,7
+nm0197950,Marcel Dalio,2,English;French,7
+nm0182839,Marion Cotillard,2,English;French,7
+nm0003909,Michael Lonsdale,2,English;French,7
+nm0728262,Mukesh Rishi,2,Hindi;Telugu,7
+nm0001993,Vincent Cassel,2,English;French,7
+nm0000761,Bibi Andersson,2,Danish;Swedish,6
+nm5654277,Bobby Simha,2,Kannada;Tamil,6
+nm0684500,Dominique Pinon,2,English;French,6
+nm0000587,Donald Pleasence,2,English;Italian,6
+nm0908919,Eli Wallach,2,English;Italian,6
+nm0248983,Herb Edelman,2,Cantonese;English,6
+nm0001376,Isabelle Huppert,2,English;French,6
+nm0006763,Jackie Shroff,2,Hindi;Tamil,6
+nm0000302,Jacqueline Bisset,2,English;French,6
+nm0241121,Jean Dujardin,2,English;French,6
+nm0000852,Jean-Marc Barr,2,English;French,6
+nm0144045,Jean-Pierre Cassel,2,English;French,6
+nm1702868,Jisshu Sengupta,2,Hindi;Telugu,6
+nm0000300,Juliette Binoche,2,English;French,6
+nm0004469,Kota Srinivasa Rao,2,Hindi;Telugu,6
+nm0496932,Lee Byung-hun,2,English;Korean,6
+nm0023832,Mathieu Amalric,2,English;French,6
+nm0149822,Mithun Chakraborty,2,Hindi;Tamil,6
+nm2284321,Samuthirakani,2,Tamil;Telugu,6
+nm0801264,Simran,2,English;Tamil,6
+nm0665554,Supriya Pathak,2,Hindi;Telugu,6
+nm0080238,Tanikella Bharani,2,Tamil;Telugu,6
+nm0609944,Wagner Moura,2,English;Portuguese,6
+nm0598971,Yves Montand,2,English;French,6
+nm0487884,Alexandra Maria Lara,2,English;German,5
+nm1846124,Ali Suliman,2,Arabic;English,5
+nm0490489,Andy Lau,2,Cantonese;Mandarin Chinese,5
+nm0803889,Bill Skarsgård,2,English;Swedish,5
+nm0490500,Carina Lau,2,Cantonese;Mandarin Chinese,5
+nm0560962,Carmen Maura,2,French;Spanish,5
+nm0117709,Daniel Brühl,2,English;German,5
+nm0526019,Diego Luna,2,English;Spanish,5
+nm0002081,Edward Fox,2,Dutch;English,5
+nm0335048,Farley Granger,2,English;Italian,5
+nm0004376,Franka Potente,2,English;German,5
+nm0673749,François Périer,2,French;Italian,5
+nm0305558,Gael García Bernal,2,English;Spanish,5
+nm0027683,Harriet Andersson,2,English;Swedish,5
+nm0108400,Jean-Claude Brialy,2,French;Italian,5
+nm0469103,Jeroen Krabbé,2,Dutch;English,5
+nm0000910,Joan Bennett,2,English;Italian,5
+nm0007123,Mammootty,2,Malayalam;Tamil,5
+nm0463539,Manisha Koirala,2,Hindi;Tamil,5
+nm0320988,Massimo Girotti,2,French;Italian,5
+nm0543547,Miki Manojlović,2,Serbian;Serbo-Croatian,5
+nm0900143,Monica Vitti,2,French;Italian,5
+nm7021807,Mrunal Thakur,2,Hindi;Telugu,5
+nm0893449,Nedumudi Venu,2,Malayalam;Tamil,5
+nm3383930,Nithya Menen,2,Malayalam;Tamil,5
+nm0636426,Noomi Rapace,2,English;Swedish,5
+nm0001725,Omar Sharif,2,English;French,5
+nm1818216,Payman Maadi,2,English;Persian,5
+nm0035866,R.G. Armstrong,2,English;Italian,5
+nm0471447,Ramya Krishnan,2,Tamil;Telugu,5
+nm8612305,Rashmika Mandanna,2,Hindi;Telugu,5
+nm0001077,Richard Crenna,2,English;French,5
+nm0005033,Sammo Kam-Bo Hung,2,Cantonese;English,5
+nm0156858,Shefali Shah,2,English;Hindi,5
+nm1328152,Shriya Saran,2,Hindi;Telugu,5
+nm0437580,Takeshi Kaneshiro,2,Cantonese;Mandarin Chinese,5
+nm0245988,Trine Dyrholm,2,Danish;German,5
+nm0876300,Ulrich Tukur,2,English;German,5
+nm1059103,Vivek Oberoi,2,Hindi;Malayalam,5
+nm0258784,Yılmaz Erdoğan,2,English;Turkish,5
+nm1664541,Zakir Hussain,2,Hindi;Tamil,5
+nm0955471,Ziyi Zhang,2,Korean;Mandarin Chinese,5
+nm0008713,Abhimanyu Singh,2,Hindi;Tamil,4
+nm0452021,Akash Khurana,2,Hindi;Tamil,4
+nm0438463,Anil Kapoor,2,English;Hindi,4
+nm7936195,Aparna Balamurali,2,Malayalam;Tamil,4
+nm0539562,Art Malik,2,English;Hindi,4
+nm1821791,Asin,2,Hindi;Tamil,4
+nm0046277,Bae Doona,2,English;Korean,4
+nm5408984,Bagavathi Perumal,2,Hindi;Tamil,4
+nm0154653,Bhoomika Chawla,2,Hindi;Telugu,4
+nm0000964,Charles Boyer,2,English;French,4
+nm5584853,Chemban Vinod Jose,2,Malayalam;Tamil,4
+nm3777127,Chhaya Kadam,2,Hindi;Marathi,4
+nm0001012,Claudia Cardinale,2,English;Italian,4
+nm1405398,Dan Stevens,2,English;German,4
+nm1502469,Dar Salim,2,Danish;English,4
+nm0000309,David Bowie,2,English;German,4
+nm0758825,Elina Salo,2,Finnish;French,4
+nm1065929,Elyas M'Barek,2,English;German,4
+nm0000322,Emmanuelle Béart,2,English;French,4
+nm0782561,Emmanuelle Seigner,2,English;French,4
+nm0167388,François Cluzet,2,French;Italian,4
+nm0507212,Geoffrey Lewis,2,English;Italian,4
+nm0001162,Griffin Dunne,2,English;French,4
+nm6625833,Gustav Lindh,2,Danish;English,4
+nm2299825,Ileana D'Cruz,2,Hindi;Telugu,4
+nm0547462,Jacques Marin,2,English;French,4
+nm0000945,Jane Birkin,2,English;French,4
+nm0363888,Jessica Harper,2,English;Italian,4
+nm0886888,Jo Van Fleet,2,English;French,4
+nm0006893,John Vernon,2,English;Italian,4
+nm0432425,Jun Hu,2,Cantonese;Mandarin Chinese,4
+nm0653669,Kati Outinen,2,Finnish;French,4
+nm0913822,Ken Watanabe,2,English;Japanese,4
+nm0874684,Kenneth Tsang,2,Cantonese;English,4
+nm6442009,Kiara Advani,2,Hindi;Telugu,4
+nm0001428,Klaus Kinski,2,German;Italian,4
+nm0001812,Lee Van Cleef,2,English;Italian,4
+nm0239267,Lillete Dubey,2,English;Hindi,4
+nm0308039,Louis Garrel,2,English;French,4
+nm1204791,Mark Bennington,2,Hindi;Tamil,4
+nm0800302,Michel Simon,2,English;French,4
+nm0438905,Mirjana Karanović,2,Serbian;Serbo-Croatian,4
+nm0864608,Mukesh Tiwari,2,Hindi;Tamil,4
+nm0491259,Mélanie Laurent,2,English;French,4
+nm3761004,Nani,2,Tamil;Telugu,4
+nm1230844,Narain,2,Malayalam;Tamil,4
+nm0438488,Pankaj Kapur,2,Hindi;Tamil,4
+nm0000048,Peter Lorre,2,English;German,4
+nm2366974,Raj Arjun,2,Hindi;Telugu,4
+nm0438496,Rajit Kapoor,2,English;Hindi,4
+nm5654687,Ramesh Thilak,2,Malayalam;Tamil,4
+nm0457410,Ravi Kishan,2,Hindi;Telugu,4
+nm1076976,Ryô Kase,2,French;Japanese,4
+nm1197689,Sandra Hüller,2,English;German,4
+nm0766470,Sathyaraj,2,Tamil;Telugu,4
+nm0846548,Saïd Taghmaoui,2,English;French,4
+nm1179580,Seu Jorge,2,English;Portuguese,4
+nm1599046,Shruti Haasan,2,Hindi;Telugu,4
+nm0844845,Susi Sánchez,2,Italian;Spanish,4
+nm0282530,Suzanne Flon,2,English;French,4
+nm0860947,Ulrich Thomsen,2,Danish;English,4
+nm0007107,Urmila Matondkar,2,Hindi;Tamil,4
+nm0039967,Adriana Asti,2,French;Italian,3
+nm2496992,Ajay,2,Tamil;Telugu,3
+nm0041828,Albert Augier,2,English;French,3
+nm0103797,Alice Braga,2,English;Portuguese,3
+nm0885098,Alida Valli,2,French;Italian,3
+nm0275138,Andréa Ferréol,2,French;German,3
+nm1979275,Angad Bedi,2,Hindi;Telugu,3
+nm0320760,Annie Girardot,2,French;Italian,3
+nm2011932,Anushka Shetty,2,Tamil;Telugu,3
+nm0474609,Atul Kulkarni,2,Hindi;Tamil,3
+nm0411683,Ayumi Ito,2,French;Japanese,3
+nm0824489,Barbara Steele,2,English;Italian,3
+nm0441287,Branka Katic,2,German;Serbian,3
+nm0000045,Bruce Lee,2,Cantonese;English,3
+nm0889024,Charles Vanel,2,English;French,3
+nm0202405,Claude Dauphin,2,English;French,3
+nm0891998,Conrad Veidt,2,English;German,3
+nm0219939,Danny Denzongpa,2,Hindi;Tamil,3
+nm0399663,David Huddleston,2,English;Italian,3
+nm0790925,Dean Shek,2,Cantonese;English,3
+nm0154122,Dhritiman Chatterjee,2,English;Hindi,3
+nm0427964,Doug Jones,2,English;Spanish,3
+nm1058007,Dragos Bucur,2,English;Romanian,3
+nm0496441,Erwin Leder,2,English;German,3
+nm0072768,Fabrizio Bentivoglio,2,Greek;Italian,3
+nm0721073,Fernando Rey,2,English;Spanish,3
+nm0631516,Filippo Nigro,2,English;Italian,3
+nm0525518,Florian Lukas,2,German;Hindi,3
+nm0255362,Gad Elmaleh,2,English;French,3
+nm1069826,Gautham Vasudev Menon,2,Malayalam;Tamil,3
+nm0656180,Geneviève Page,2,English;French,3
+nm0295429,Georg Friedrich,2,French;German,3
+nm0002231,Gian Maria Volontè,2,French;Italian,3
+nm1601080,Greg Chun,2,English;Japanese,3
+nm5626435,Guru Somasundaram,2,Malayalam;Tamil,3
+nm0803890,Gustaf Skarsgård,2,English;Swedish,3
+nm0778016,Hanna Schygulla,2,German;Hungarian,3
+nm6649988,Harish Uthaman,2,Malayalam;Tamil,3
+nm0760796,Hiroyuki Sanada,2,English;Japanese,3
+nm0005013,Iben Hjejle,2,Danish;English,3
+nm0719224,Isabelle Renauld,2,French;Greek,3
+nm0464522,Jacek Koman,2,English;Polish,3
+nm0194572,Javier Cámara,2,English;Spanish,3
+nm0544786,Jean Marais,2,French;Italian,3
+nm3029144,Joe Taslim,2,English;Indonesian,3
+nm0000566,Julia Ormond,2,English;Russian,3
+nm9219502,Kalyani Priyadarshan,2,Malayalam;Tamil,3
+nm0594073,Ken Mitsuishi,2,French;Japanese,3
+nm1970380,Kenneth Nkosi,2,English;Zulu,3
+nm5305841,Kriti Sanon,2,Hindi;Telugu,3
+nm0748964,Lars Rudolph,2,German;Hungarian,3
+nm0756203,Ludivine Sagnier,2,English;French,3
+nm0862479,Lung Ti,2,Cantonese;English,3
+nm0542498,Mahesh Manjrekar,2,Hindi;Tamil,3
+nm10310964,Mamitha Baiju,2,Malayalam;Tamil,3
+nm0913097,Manju Warrier,2,Malayalam;Tamil,3
+nm0523597,Margarita Lozano,2,French;Spanish,3
+nm0557457,Marina Massironi,2,English;Italian,3
+nm0352278,Matthias Habich,2,English;German,3
+nm0175700,Michael Conrad,2,English;French,3
+nm0813763,Milind Soman,2,Hindi;Tamil,3
+nm1071413,Nao Ōmori,2,French;Japanese,3
+nm0893638,Natalia Verbeke,2,French;Spanish,3
+nm1778703,Neil Nitin Mukesh,2,Hindi;Tamil,3
+nm0034390,Niels Arestrup,2,English;French,3
+nm0182666,Nikolaj Coster-Waldau,2,Danish;English,3
+nm9016782,Nimisha Sajayan,2,Malayalam;Tamil,3
+nm2527173,Parvathy Thiruvothu,2,Hindi;Malayalam,3
+nm0196375,Parvin Dabas,2,English;Hindi,3
+nm0027800,Peter Andersson,2,Danish;Swedish,3
+nm0886870,Peter van Eyck,2,English;French,3
+nm0695595,Praveena,2,Malayalam;Tamil,3
+nm0090674,Rainer Bock,2,English;German,3
+nm0829032,Ray Stevenson,2,English;Telugu,3
+nm0613417,Raza Murad,2,Hindi;Telugu,3
+nm1249052,Riccardo Scamarcio,2,English;Italian,3
+nm0000865,Richard Basehart,2,English;Italian,3
+nm0763928,Rodrigo Santoro,2,English;Portuguese,3
+nm0368990,Rohini Hattangadi,2,English;Hindi,3
+nm0000275,Rosanna Arquette,2,English;French,3
+nm0786022,Roshan Seth,2,English;Hindi,3
+nm0727165,Sam Riley,2,English;German,3
+nm3781410,Sebastian Bull,2,Danish;English,3
+nm0462407,Sebastian Koch,2,English;German,3
+nm0948012,Serra Yılmaz,2,Italian;Turkish,3
+nm3557375,Shine Tom Chacko,2,Malayalam;Tamil,3
+nm0788918,Shishir Sharma,2,Hindi;Telugu,3
+nm0803187,Sithara,2,Tamil;Telugu,3
+nm0344894,Sofie Gråbøl,2,Danish;French,3
+nm1399243,Sonu Sood,2,Hindi;Telugu,3
+nm0000047,Sophia Loren,2,English;Italian,3
+nm0865411,Srdjan 'Zika' Todorovic,2,Serbian;Serbo-Croatian,3
+nm3081796,Steven Yeun,2,English;Korean,3
+nm0038355,Tadanobu Asano,2,English;Japanese,3
+nm1961459,Tamannaah Bhatia,2,Tamil;Telugu,3
+nm0000654,Terence Stamp,2,English;Italian,3
+nm0001709,Til Schweiger,2,English;German,3
+nm0794818,Tillotama Shome,2,English;Hindi,3
+nm0001823,Tom Waits,2,English;Italian,3
+nm0504899,Tony Ka Fai Leung,2,Cantonese;Mandarin Chinese,3
+nm0618057,Ulrich Mühe,2,English;German,3
+nm1957308,V. Jayaprakash,2,Malayalam;Tamil,3
+nm4651098,Vidyut Jammwal,2,Hindi;Tamil,3
+nm0002094,Vittorio Gassman,2,English;Italian,3
+nm0422638,Wen Jiang,2,English;Mandarin Chinese,3
+nm0230859,Xavier Dolan,2,English;French,3
+nm5232139,Yash,2,Hindi;Kannada,3
+nm3253626,Yu-Hang To,2,Cantonese;English,3
+nm0596807,Ángela Molina,2,Italian;Spanish,3
+nm0140025,Ada Carrasco,2,English;Spanish,2
+nm4682935,Adam Bakri,2,Arabic;English,2
+nm0148041,Adolfo Celi,2,English;French,2
+nm5781594,Aishwarya Rajesh,2,Malayalam;Tamil,2
+nm4886752,Ajay Ghosh,2,Tamil;Telugu,2
+nm11057423,Ajith Koshy,2,Malayalam;Tamil,2
+nm0377336,Aksel Hennie,2,Danish;English,2
+nm0217817,Albert Delpy,2,English;French,2
+nm0753716,Albert Rémy,2,English;French,2
+nm0814773,Alberto Sordi,2,English;Italian,2
+nm0759757,Aldo Sambrell,2,Cantonese;Italian,2
+nm1090879,Alexandru Papadopol,2,German;Romanian,2
+nm2308578,Alexandru Potocean,2,English;Romanian,2
+nm0045461,Alicja Bachleda,2,English;German,2
+nm0233145,Alison Doody,2,English;Telugu,2
+nm3898762,Amala Paul,2,Malayalam;Tamil,2
+nm0990640,Amar Upadhyay,2,Hindi;Tamil,2
+nm0932870,André Wilms,2,French;German,2
+nm0903867,Andréas Voutsinas,2,English;French,2
+nm0609662,Anna Mouglalis,2,French;Italian,2
+nm0926723,Anne Wiazemsky,2,French;Italian,2
+nm0000733,Anouk Aimée,2,French;Italian,2
+nm3612256,Anupama Kumar,2,Hindi;Tamil,2
+nm0167168,April Clough,2,English;Italian,2
+nm0045119,Aruna Irani,2,Hindi;Tamil,2
+nm1617865,Arundathi Nag,2,English;Hindi,2
+nm1678557,Ashraf Barhom,2,Arabic;English,2
+nm1794460,Asif Basra,2,English;Hindi,2
+nm0043199,Avinash,2,Kannada;Tamil,2
+nm0563740,Aïssa Maïga,2,English;French,2
+nm0577167,Bent Mejding,2,Danish;English,2
+nm0645302,Berta Ojea,2,French;Spanish,2
+nm9335523,Bertrand Poncet,2,English;French,2
+nm0080228,Bhanupriya,2,Tamil;Telugu,2
+nm0707300,Bharathiraja,2,Malayalam;Tamil,2
+nm0865392,Bora Todorović,2,Serbian;Serbo-Croatian,2
+nm0187337,Bruno Cremer,2,English;French,2
+nm3841713,Calvin Ka-Sing Cheng,2,Cantonese;English,2
+nm0593192,Cameron Mitchell,2,English;Italian,2
+nm0100628,Charlotte Bøving,2,English;Icelandic,2
+nm0434968,Christian Kahrmann,2,English;German,2
+nm0549650,Christian Marquand,2,English;Italian,2
+nm0314358,Claudia Gerini,2,English;Italian,2
+nm0993242,Clémence Poésy,2,English;French,2
+nm0796316,Clément Sibony,2,English;French,2
+nm0477868,Cornelia Köndgen,2,French;German,2
+nm0706220,Cyril Raffaelli,2,English;French,2
+nm1320600,César Bordón,2,English;Spanish,2
+nm0011937,Daniel Ades,2,English;German,2
+nm0004625,Daniel Gélin,2,English;French,2
+nm0831262,Danilo Stojković,2,Serbian;Serbo-Croatian,2
+nm0376101,David Hemmings,2,English;Italian,2
+nm1269088,David Kross,2,English;German,2
+nm0513190,Derek de Lint,2,Dutch;English,2
+nm0491763,Dominique Lavanant,2,French;Italian,2
+nm0301841,Eddra Gale,2,English;Italian,2
+nm0026130,Elga Andersen,2,English;French,2
+nm0959113,Elsa Zylberstein,2,English;French,2
+nm0288976,Emilia Fox,2,English;Italian,2
+nm0160823,Emily Chu,2,Cantonese;English,2
+nm0248254,Eriq Ebouaney,2,English;Korean,2
+nm0559837,Eva Mattes,2,English;German,2
+nm0094958,Franck-Olivier Bonnet,2,French;artistic language,2
+nm0233753,Françoise Dorléac,2,English;French,2
+nm3141662,Frederikke Dahl Hansen,2,Danish;English,2
+nm0496428,Friedrich von Ledebur,2,English;Italian,2
+nm8030431,G.M. Sundar,2,Malayalam;Tamil,2
+nm0608311,Gastone Moschin,2,English;Italian,2
+nm0311677,Geetha,2,Tamil;Telugu,2
+nm1299510,Genelia Deshmukh,2,Hindi;Telugu,2
+nm0439784,Girish Karnad,2,Hindi;Tamil,2
+nm0424167,Gottfried John,2,English;German,2
+nm0171499,Grégoire Colin,2,English;French,2
+nm2217035,Gururaj Manepalli,2,Hindi;Telugu,2
+nm4273857,Hamza Ali Abbasi,2,English;Punjabi,2
+nm0957193,Hanns Zischler,2,English;German,2
+nm4945396,Harish Kalyan,2,Tamil;Telugu,2
+nm0071502,Heinz Bennent,2,English;French,2
+nm0605786,Henning Moritzen,2,Danish;Swedish,2
+nm0320762,Hippolyte Girardot,2,English;French,2
+nm0259831,Homayoun Ershadi,2,English;Persian,2
+nm0399062,Huang Yi,2,Cantonese;Mandarin Chinese,2
+nm0468003,Hubert Koundé,2,English;French,2
+nm0637643,Hubert Noël,2,English;French,2
+nm0822868,Huub Stapel,2,Dutch;German,2
+nm0001393,Irène Jacob,2,English;French,2
+nm1589340,Isha Talwar,2,Hindi;Malayalam,2
+nm0221527,Ivan Desny,2,English;German,2
+nm0307995,Ivo Garrani,2,English;Italian,2
+nm0474649,Jarl Kulle,2,Danish;Swedish,2
+nm0419685,Jaya Prada,2,Hindi;Tamil,2
+nm0110494,Jean Brochard,2,French;Italian,2
+nm0552483,Jean Martin,2,French;Italian,2
+nm0553361,Jean Martinelli,2,English;French,2
+nm0634120,Jean Pierre Noher,2,Portuguese;Spanish,2
+nm3608802,Jigar Singh Gill,2,Hindi;Tamil,2
+nm1846368,Jingchu Zhang,2,English;Mandarin Chinese,2
+nm2251846,Joanna Kulig,2,English;Polish,2
+nm0308299,Joaquín Garrido,2,English;Spanish,2
+nm0939153,Joey Wang,2,Cantonese;Mandarin Chinese,2
+nm0927092,Johan Widerberg,2,English;Swedish,2
+nm0155578,John Cheung,2,Cantonese;Mandarin Chinese,2
+nm0761103,José Sancho,2,Cantonese;Spanish,2
+nm0259074,Juli Erickson,2,English;Japanese,2
+nm0001638,Jürgen Prochnow,2,English;German,2
+nm0001934,Kabir Bedi,2,English;Hindi,2
+nm5296909,Kalaiyarasan,2,Malayalam;Tamil,2
+nm0003337,Karlheinz Böhm,2,English;German,2
+nm0668093,Katina Paxinou,2,English;Italian,2
+nm0155587,Kent Cheng,2,Cantonese;English,2
+nm0530594,Klaus Löwitsch,2,English;German,2
+nm0100460,Koen De Bouw,2,Belgian Dutch;Dutch,2
+nm0208642,Koen De Graeve,2,Belgian Dutch;Dutch,2
+nm15813284,Kousi Orfahli,2,Hindi;Telugu,2
+nm9598771,Krithi Shetty,2,Malayalam;Telugu,2
+nm5389637,Laila Berzins,2,English;Japanese,2
+nm0482285,Lakshmi,2,Hindi;Tamil,2
+nm0482309,Lal,2,Malayalam;Tamil,2
+nm0933727,Lambert Wilson,2,English;French,2
+nm0387133,Lars Hjortshøj,2,Danish;English,2
+nm2539653,Laura Verlinden,2,Dutch;French,2
+nm0557159,Lea Massari,2,French;Italian,2
+nm0330388,Leo Gordon,2,English;Italian,2
+nm0914455,Leonor Watling,2,English;Spanish,2
+nm0240318,Lola Dueñas,2,French;Spanish,2
+nm0318153,Lou Gilbert,2,English;Italian,2
+nm0465503,Louis Koo,2,Cantonese;Mandarin Chinese,2
+nm0751301,Lucy Russell,2,English;German,2
+nm1414203,Lynn Xiong,2,Cantonese;English,2
+nm0617736,Macha Méril,2,French;Italian,2
+nm0495495,Madeleine Lebeau,2,English;Italian,2
+nm7371790,Madonna Sebastian,2,Malayalam;Telugu,2
+nm1324246,Mallika Sherawat,2,Hindi;Tamil,2
+nm1952830,Mamta Mohandas,2,Malayalam;Tamil,2
+nm0628806,Man-Tat Ng,2,Cantonese;English,2
+nm1658967,Mansoor Ali Khan,2,Malayalam;Tamil,2
+nm0102566,Marcel Bozzuffi,2,English;French,2
+nm0389424,Marco Hofschneider,2,English;German,2
+nm0502813,Marco Leonardi,2,Italian;Spanish,2
+nm0702270,Marco Pérez,2,English;Spanish,2
+nm0141380,Margit Carstensen,2,English;German,2
+nm0095013,Maria Bonnevie,2,Danish;Norwegian,2
+nm2661864,Maria Dragus,2,German;Romanian,2
+nm0770730,Maria Schell,2,English;Italian,2
+nm0800314,Maria Simon,2,English;German,2
+nm0210218,Maria de Medeiros,2,English;French,2
+nm0056763,Marie-Christine Barrault,2,English;French,2
+nm0000728,Mario Adorf,2,English;German,2
+nm0592499,Mariya Mironova,2,English;Russian,2
+nm0445715,Marthe Keller,2,English;French,2
+nm0440913,Mathieu Kassovitz,2,English;French,2
+nm0776914,Maurice Schutz,2,French;German,2
+nm0623854,Mehdi Nebbou,2,English;Hindi,2
+nm0632457,Merab Ninidze,2,English;German,2
+nm0041509,Michel Auclair,2,English;French,2
+nm0301556,Michel Galabru,2,French;Spanish,2
+nm0580440,Michèle Mercier,2,French;Italian,2
+nm0006807,Michèle Morgan,2,English;French,2
+nm0370717,Miguel Palenzuela,2,Cantonese;Spanish,2
+nm0675409,Mikael Persbrandt,2,Danish;English,2
+nm0667846,Milena Pavlovic,2,Serbian;Serbo-Croatian,2
+nm4367928,Misha Ghoshal,2,English;Tamil,2
+nm15760089,Mithun Jai Shankar,2,Malayalam;Tamil,2
+nm0595934,Mohan Babu,2,Tamil;Telugu,2
+nm1018245,Mohan Kapur,2,Hindi;Tamil,2
+nm0000899,Monica Bellucci,2,French;Italian,2
+nm0535502,Mía Maestro,2,English;Spanish,2
+nm1122924,Nadia Moidu,2,Malayalam;Telugu,2
+nm0632473,Nataša Ninković,2,Serbian;Serbo-Croatian,2
+nm0000882,Nathalie Baye,2,English;French,2
+nm5194813,Naveen Chandra,2,Tamil;Telugu,2
+nm5189611,Naveen Polishetty,2,Hindi;Telugu,2
+nm6697626,Neeraj Madhav,2,Hindi;Malayalam,2
+nm0647757,Niels Olsen,2,Danish;English,2
+nm7473958,Nikhila Vimal,2,Malayalam;Tamil,2
+nm0396125,Nina Hoss,2,English;German,2
+nm1911617,Nitu Chandra,2,Hindi;Tamil,2
+nm0712437,Nizhalgal Ravi,2,Malayalam;Tamil,2
+nm0583963,Nora Miao,2,Cantonese;English,2
+nm4374524,Noémie Merlant,2,English;French,2
+nm0635262,Ola Rapace,2,English;Swedish,2
+nm0093678,Paolo Bonacelli,2,English;Italian,2
+nm0791502,Paul Shenar,2,English;French,2
+nm2103508,Paulina Gaitan,2,English;Spanish,2
+nm0904303,Pavle Vuisić,2,Serbian;Serbo-Croatian,2
+nm1002207,Phetthai Vongkumlao,2,English;Thai,2
+nm0634159,Philippe Noiret,2,French;Italian,2
+nm0167509,Pierre Clémenti,2,French;Italian,2
+nm15236379,Preity Mukhundhan,2,Malayalam;Tamil,2
+nm5637317,Raashi Khanna,2,Hindi;Tamil,2
+nm0001044,Rae Dawn Chong,2,English;artistic language,2
+nm1298052,Raghu Babu,2,Tamil;Telugu,2
+nm2463487,Ramya Nambeeshan,2,Malayalam;Tamil,2
+nm0874232,Raoul Max Trujillo,2,English;Yucatec Maya,2
+nm0782648,Rapulana Seiphemo,2,English;Zulu,2
+nm3046678,Ravi Prakash,2,Hindi;Tamil,2
+nm3024530,Reda Kateb,2,English;French,2
+nm0686256,Riccardo Pizzuti,2,English;Italian,2
+nm0092184,Richard Bohringer,2,English;French,2
+nm1600747,Rie Minemura,2,French;Japanese,2
+nm1289230,Riyaz Khan,2,Hindi;Tamil,2
+nm1982843,Robin Das,2,Hindi;Malayalam,2
+nm0002769,Romy Schneider,2,French;German,2
+nm10202855,Ronit Kamra,2,Hindi;Telugu,2
+nm0685782,Sacha Pitoëff,2,English;French,2
+nm0095465,Sahajak Boonthanakit,2,English;Thai,2
+nm0436315,Salih Kalyon,2,English;Turkish,2
+nm1213820,Sameera Reddy,2,Hindi;Tamil,2
+nm0764871,Sarath Babu,2,Tamil;Telugu,2
+nm1070494,Satoshi Tsumabuki,2,French;Japanese,2
+nm8485910,Saurabh Sachdeva,2,Hindi;Malayalam,2
+nm0722657,Serge Riaboukine,2,French;Spanish,2
+nm0872729,Sergej Trifunovic,2,English;Serbian,2
+nm0129564,Sergio Calderón,2,English;French,2
+nm0266949,Sergio Fantoni,2,English;Italian,2
+nm0846616,Sharmila Tagore,2,Bangla;Hindi,2
+nm9326259,Sheela Rajkumar,2,Malayalam;Tamil,2
+nm1217394,Shidô Nakamura,2,Japanese;Mandarin Chinese,2
+nm1064300,Shiva Rindani,2,Hindi;Tamil,2
+nm7744845,Shraddha Srinath,2,Tamil;Telugu,2
+nm1413459,Siddharth,2,Tamil;Telugu,2
+nm0036324,Sig Arno,2,English;German,2
+nm0008787,Simon Abkarian,2,English;French,2
+nm0490618,Siu-Ming Lau,2,Cantonese;Mandarin Chinese,2
+nm0241694,Sky du Mont,2,English;French,2
+nm0830371,Slavko Štimac,2,Serbian;Serbo-Croatian,2
+nm0007114,Sonali Bendre,2,Hindi;Tamil,2
+nm4248233,Sri Divya,2,Malayalam;Tamil,2
+nm2778904,Suhail Dabbach,2,Arabic;English,2
+nm0838520,Suman,2,Hindi;Tamil,2
+nm0710046,Suman Ranganath,2,Hindi;Tamil,2
+nm0329730,Suresh Gopi,2,Malayalam;Tamil,2
+nm0030153,Sverre Anker Ousdal,2,English;Norwegian,2
+nm6593670,Tarik Rmili,2,Arabic;Spanish,2
+nm7628415,Teeradon Supapunpinyo,2,English;Thai,2
+nm1965907,Terry Pheto,2,English;Zulu,2
+nm2457436,Thomas Loibl,2,English;German,2
+nm0604349,Tobias Moretti,2,English;German,2
+nm0587401,Tomas Milian,2,English;Italian,2
+nm0423663,Tomisaburō Wakayama,2,English;Japanese,2
+nm1388074,Tony Jaa,2,English;Thai,2
+nm1421628,Tota Roy Chowdhury,2,Hindi;Tamil,2
+nm0759797,Udo Samel,2,French;German,2
+nm0414965,Ulla Jacobsson,2,English;Swedish,2
+nm0559890,Ulrich Matthes,2,English;German,2
+nm1574606,Upen Patel,2,Hindi;Tamil,2
+nm0181305,Valentina Cortese,2,English;Italian,2
+nm4174212,Varalaxmi Sarathkumar,2,Tamil;Telugu,2
+nm2587761,Vinay Rai,2,Tamil;Telugu,2
+nm0482708,Wai Lam,2,Cantonese;Mandarin Chinese,2
+nm1625385,Waleed Elgadi,2,Arabic;English,2
+nm0958206,Waleed Zuaiter,2,Arabic;English,2
+nm0943138,Wu Ma,2,Cantonese;Mandarin Chinese,2
+nm0271815,Xiaogang Feng,2,Cantonese;Mandarin Chinese,2
+nm3345670,Yayan Ruhian,2,English;Indonesian,2
+nm0559647,Yutaka Matsushige,2,English;Japanese,2
+nm0058246,Yves Barsacq,2,English;French,2
+nm0849093,Yôji Tanaka,2,English;Japanese,2
+nm10487218,Zarin Shihab,2,Hindi;Malayalam,2
+nm0610904,Zoltán Mucsi,2,English;Hungarian,2
