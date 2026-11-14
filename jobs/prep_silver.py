@@ -25,6 +25,7 @@ from spark_utils import get_spark, read_table, save_result, write_table
 
 FIRST_FILM_YEAR = 1870      # oldest motion pictures date from the 1870s-1880s
 MAX_LIFESPAN = 120          # oldest verified human lived 122 years
+BC_MAX_YEAR = 1000          # death < birth with years below this: probably BC dates
 MAX_RUNTIME = 24 * 60       # runtimes longer than a day are flagged as extreme
 SERIES_TYPES = ["tvSeries", "tvMiniSeries"]
 ARCHIVE_CATEGORIES = ["archive_footage", "archive_sound", "self"]
@@ -92,8 +93,11 @@ def first_reason(*rules) -> F.Column:
 
 
 def duplicate_rank(*keys: str) -> F.Column:
-    """1 for the first row of each key, 2, 3... for the duplicates."""
-    window = Window.partitionBy(*keys).orderBy(F.monotonically_increasing_id())
+    """1 for the first row of each key, 2, 3... for the duplicates.
+
+    Ordered on the raw line, so the row kept is the same at every run.
+    """
+    window = Window.partitionBy(*keys).orderBy(F.col("_raw_line"))
     return F.row_number().over(window)
 
 
@@ -216,6 +220,10 @@ def clean_name_basics(spark) -> None:
         "birth_year_in_future": F.col("birth_year") > CURRENT_YEAR,
         "death_year_in_future": F.col("death_year") > CURRENT_YEAR,
         "death_before_birth": F.col("death_year") < F.col("birth_year"),
+        # Ancient people (Homer, Aeschylus...): BC years are stored without a
+        # sign, so death < birth. Flagged separately, both years still removed.
+        "probable_bc_dates": (F.col("death_year") < F.col("birth_year"))
+        & (F.col("birth_year") < BC_MAX_YEAR),
         "implausible_lifespan": (F.col("death_year") - F.col("birth_year")) > MAX_LIFESPAN,
         "alive_older_than_max_lifespan": F.col("death_year").isNull()
         & ((CURRENT_YEAR - F.col("birth_year")) > MAX_LIFESPAN),
