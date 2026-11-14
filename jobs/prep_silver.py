@@ -95,9 +95,13 @@ def first_reason(*rules) -> F.Column:
 def duplicate_rank(*keys: str) -> F.Column:
     """1 for the first row of each key, 2, 3... for the duplicates.
 
-    Ordered on the raw line, so the row kept is the same at every run.
+    Duplicates are ordered on a hash of the whole row content (all columns of
+    the DataFrame, '*'), so the row kept is the same at every run whatever
+    the order in which Spark reads the files. Rows with the same content are
+    interchangeable.
     """
-    window = Window.partitionBy(*keys).orderBy(F.col("_raw_line"))
+    content = F.sha2(F.to_json(F.struct("*")), 256)
+    window = Window.partitionBy(*keys).orderBy(content)
     return F.row_number().over(window)
 
 
