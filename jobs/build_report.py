@@ -7,9 +7,14 @@ Every line of the template of the form
 is replaced by the content of results/<name>.md. Everything else in the
 template (text written by the group) is copied unchanged.
 
-Usage: python jobs/build_report.py
+When a table is missing, a placeholder is written and the script exits with
+an error (code 1), so an incomplete REPORT.md cannot be submitted by mistake.
+Use --allow-missing to build a draft from a partial run (exit code 0).
+
+Usage: python jobs/build_report.py [--allow-missing]
 """
 
+import argparse
 import re
 import sys
 
@@ -21,6 +26,11 @@ PLACEHOLDER = re.compile(r"^\{\{table:([\w\-]+)\}\}\s*$")
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--allow-missing", action="store_true",
+                        help="exit with 0 even if some tables are missing (draft)")
+    args = parser.parse_args()
+
     missing = []
     lines = []
     for line in TEMPLATE.read_text(encoding="utf-8").splitlines():
@@ -38,6 +48,10 @@ def main() -> int:
     print(f"REPORT.md written ({len(missing)} missing tables)")
     for name in missing:
         print(f"  missing: results/{name}.md", file=sys.stderr)
+    if missing and not args.allow_missing:
+        print("error: some result tables are missing, run the corresponding steps "
+              "(or use --allow-missing for a draft)", file=sys.stderr)
+        return 1
     return 0
 
 
