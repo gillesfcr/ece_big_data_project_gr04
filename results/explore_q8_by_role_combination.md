@@ -1,0 +1,13 @@
+| role_combination | people | people_with_multi_role_films | avg_rating_multi_role | avg_rating_single_role | avg_difference |
+| --- | --- | --- | --- | --- | --- |
+| director+writer | 8332 | 8075 | 6.15 | 6.14 | 0.04 |
+| director+producer+writer | 4783 | 4763 | 6.03 | 6.10 | 0.02 |
+| producer+writer | 2908 | 2403 | 5.81 | 6.03 | -0.09 |
+| actor+writer | 2722 | 1488 | 5.97 | 6.10 | 0.01 |
+| actor+producer | 2003 | 1296 | 5.56 | 5.90 | -0.23 |
+| actor+director+writer | 1483 | 1461 | 6.11 | 6.21 | -0.06 |
+| actor+director+producer+writer | 1457 | 1456 | 5.93 | 6.06 | -0.00 |
+| director+producer | 1346 | 1142 | 6.29 | 6.09 | 0.04 |
+| actor+producer+writer | 734 | 707 | 5.45 | 5.70 | -0.11 |
+| actor+director | 488 | 178 | 5.60 | 6.09 | -0.53 |
+| actor+director+producer | 266 | 246 | 6.03 | 6.09 | -0.05 |

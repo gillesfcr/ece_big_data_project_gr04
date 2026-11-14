@@ -1,0 +1,3 @@
+| successful_films | with_original_language | single_language_used | several_languages_excluded | used_pct |
+| --- | --- | --- | --- | --- |
+| 4974 | 4896 | 4300 | 596 | 86.45 |

@@ -1,0 +1,4 @@
+| records | total | with_wikidata_item | with_wikipedia_article | with_plot_or_synopsis | lead_used_as_fallback | enriched | enriched_pct |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| films | 7186 | 6695 | 6367 | 5975 | 391 | 6366 | 88.59 |
+| principals | 21512 | 19437 | 18197 |  |  | 18196 | 84.59 |

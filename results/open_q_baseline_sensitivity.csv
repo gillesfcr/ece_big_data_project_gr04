@@ -1,0 +1,4 @@
+film_of_pair,pair_films,avg_residual_prior_baseline,avg_residual_leave_one_out
+first collaboration,11487,0.0742758596799463,0.26849184877402626
+later collaborations,37436,-0.18342322469490047,-0.03573140903191943
+one-off pairs,144861,-0.20490421336561393,-0.07928469393186453
