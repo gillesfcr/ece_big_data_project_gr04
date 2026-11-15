@@ -174,6 +174,6 @@ docker compose down -v     # also delete the data volume (full reset)
 
 | Tool | Used by | Used for |
 | --- | --- | --- |
-| Claude Code (Anthropic, model Claude Opus 5.5) | Gilles Foucart, Arthur Perreaut | Writing, testing and debugging the code of the pipeline (Docker setup, PySpark batch and streaming jobs, Wikidata/Wikipedia gathering scripts, report builder), this execution guide, and drafting pull request descriptions and review comments, which were checked and posted by the group members |
+| Claude Code (Anthropic, model Claude Opus 5.5) | Gilles Foucart, Arthur Perreaut | Writing, testing and debugging the code of the pipeline (Docker setup, PySpark batch and streaming jobs, Wikidata/Wikipedia gathering scripts, report builder)|
 
 No AI tool was used to write the explanations, methodology and reasoning of `REPORT.md`.
