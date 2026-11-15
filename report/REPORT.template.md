@@ -41,7 +41,9 @@ Foreign keys without parent record:
 
 ### 1.4 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+We clean the data in three main steps. First, we measure missing values directly on the raw bronze files before changing anything. This helps us separate IMDb's official null (\N), empty strings, and spaces, which would all look the same if we typed the columns first. Second, we convert columns to their proper types like integers and decimals, turning any invalid text into null and flagging it. Third, we handle bad data based on how serious it is, and we record all flags in a dq_flags column to track them in our report. Unusable rows such as broken lines, missing or duplicate keys, unknown directors, or people credited before they were born are quarantined and removed from the silver table. For impossible values like dying before being born or negative runtimes, we keep the row because the rest of the data is still good, and we simply set the wrong value to null. Finally, we keep suspicious values like future release dates or movies longer than 24 hours, since they could be real.
+
+There are also a couple of special cases. For ancient authors like Homer, IMDb writes BC dates without a minus sign, making it look like they died before being born. We flag these separately and set the years to null rather than guessing negative numbers, since IMDb does not indicate the era. For duplicate keys, we use a content hash to always keep the exact same row from one run to the next. Overall, we chose a conservative and traceable approach instead of deleting every flawed row—which wastes good data—or replacing missing values with averages, which would distort our analysis.
 
 ## 2. Data exploration
 
@@ -106,7 +108,18 @@ At least three languages:
 
 ### 2.9 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+Before answering the questions, we apply a few common rules: we only keep feature films of at least 40 minutes (the official standard used by the Oscars, AFI, and BFI) that have at least 1,000 votes so small sample sizes do not skew the ratings. A successful movie needs both a rating of 7.0 or higher and at least 10,000 votes to prove real popularity.
+
+For Q4, we look for directors with just one masterpiece. We select those who have exactly one film rated 8.0 or above, and at least two other films with an average rating of 6.0 or below. Requiring at least two other films avoids mistaking a single coincidence for a real gap in quality, and we exclude the masterpiece from that average so it does not pull the score up.
+
+For Q6, we identify actors who succeed in multiple languages using the movie's original language from Wikidata (property P364). We avoided IMDb's title.akas table because it lists translated release versions rather than original languages and is often empty. We merge variants like American and British English into English, and we only keep single-language films so one bilingual movie does not falsely make an actor count as multilingual. Even though this excludes 597 interesting international co-productions, it gives us a clean list of actors with hits in two or more, and three or more, languages.
+
+For Q7, we look for actors whose careers peaked early by analyzing careers lasting at least 20 years with 15 or more films, split chronologically into three equal parts. An actor is selected if their highest-rated movie is in the first third and their early average is higher than their late average, proving a real decline rather than just one lucky debut. We also require at least three films in both the first and last parts so a single late cameo does not skew the result. A linear regression could measure this trend too, but it is harder to interpret and too sensitive to isolated movies.
+
+For Q8, we study multi-talented people who have held at least two roles among actor, director, writer, and producer. For each person, we compare their average rating when working a single role against movies where they take on multiple roles at once. Comparing someone to themselves neutralizes their natural talent level, though we have to keep in mind that this only shows correlation people often wear multiple hats on personal passion projects, which might explain the better ratings.
+
+> TO WRITE (Gilles): Q1, Q2, Q3 and Q5.
+
 
 ## 3. Data enrichment
 
@@ -166,11 +179,23 @@ Late events and rows dropped by the watermark:
 
 ### 4.1 Late arriving data
 
-> TO WRITE (group): explanation of the chosen method to deal with late arriving data.
+To handle delayed data properly, we group events using the actual Wikipedia edit timestamp rather than when Spark receives them, ensuring late edits still go into the right time window. We use a 2-minute watermark, meaning once Spark sees an event at time T, it waits up to two minutes for older events before closing those windows, writing the results, and freeing up memory. Late events are still saved in our raw output table, which does not use a watermark, but windowed aggregations drop them if their window has already closed and count them as dropped rows.
+
+In our test, we intentionally delayed 2% of events by 5 minutes: 44 late events were sent, and 13 were dropped by the windows. Before writing the final report, we should check the stream_late_events table to confirm why the other 31 were not dropped, though they were likely published after the job finished or right at the start when the watermark was still low. Using a longer watermark would save more events, but it would also use more memory and delay results. Since 50% of events arrive within 9 seconds and 99% within 20 seconds, 2 minutes is a very safe compromise.
 
 ### 4.2 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+Our streaming pipeline flows from the Wikimedia SSE stream to a Python producer, through Kafka, and into Spark Structured Streaming. Using Kafka as a buffer separates data collection from processing and allows Spark to resume without losing any data if it crashes or restarts. We parse the incoming JSON with an explicit schema instead of inferring it, which is faster, more stable, and prevents unexpected fields from breaking the job. To enrich the stream with IMDb data, we use a stream-static broadcast join, sending the small, unchanging IMDb lookup table to every worker node rather than doing a heavy stream-stream join.
+
+We match Wikipedia pages to IMDb in three ways, from strictest to broadest:
+
+Exact title matches using Wikidata links
+
+Page titles formatted as "Title (YYYY film)"
+
+Person names with at least two words, to avoid false matches like "Paris" or "John"
+
+We track activity using 5-minute tumbling windows to count edits by type, and 10-minute sliding windows (updating every 5 minutes) to follow top edited entities and smooth out sudden spikes, while logging performance metrics every 10 seconds. We rejected fuzzy matching because it creates too many false positives, and we avoided using processing time since it puts delayed events into the wrong time windows.
 
 ## 5. Open question
 
