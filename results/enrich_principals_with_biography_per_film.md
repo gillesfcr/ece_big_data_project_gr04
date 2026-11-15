@@ -1,0 +1,6 @@
+| principals_with_biography | count |
+| --- | --- |
+| 0 | 477 |
+| 1 | 529 |
+| 2 | 873 |
+| 3 | 5307 |

@@ -1,0 +1,12 @@
+| nconst | primaryName | birthYear | deathYear | primaryProfession |
+| --- | --- | --- | --- | --- |
+| nm0012634 | Aeschylus | 525 | 456 | writer |
+| nm0012635 | Aesop | 620 | 560 | writer |
+| nm0034922 | Aristophanes | 450 | 388 | writer,soundtrack |
+| nm0174595 | Confucius | 551 | 479 | writer |
+| nm0202552 | C. Daveillans | 1962 | 1936 | writer |
+| nm0262381 | Euripides | 484 | 406 | writer,composer |
+| nm0392955 | Homer | 850 | 800 | writer,miscellaneous |
+| nm0515385 | Titus Livius | 59 | 17 | writer |
+| nm0541940 | A. Maneck | 1899 | 1867 | miscellaneous |
+| nm0549460 | Publius Vergilius Maro | 70 | 19 | writer |

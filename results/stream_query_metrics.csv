@@ -1,0 +1,4 @@
+query,micro_batches,input_rows,avg_input_rows_per_s,avg_processed_rows_per_s,avg_batch_duration_ms,max_batch_duration_ms,rows_dropped_by_watermark,max_state_rows,last_watermark
+events,50,2282,1.5339999999999998,30.003999999999987,1508.44,2105,0,0,
+sliding,51,2282,1.5058823529411764,28.235294117647054,1557.078431372549,2131,0,55,2026-11-14T16:12:42.000Z
+tumbling,51,2282,1.5039215686274507,28.366666666666678,1541.686274509804,2102,8,6,2026-11-14T16:12:43.000Z

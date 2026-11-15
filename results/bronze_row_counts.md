@@ -1,0 +1,9 @@
+| table | rows | malformed_rows |
+| --- | --- | --- |
+| title.basics | 12963111 | 0 |
+| title.akas | 60424702 | 0 |
+| title.crew | 12963111 | 0 |
+| title.episode | 10034862 | 0 |
+| title.principals | 102756358 | 0 |
+| title.ratings | 1732169 | 0 |
+| name.basics | 15816005 | 0 |

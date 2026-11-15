@@ -1,0 +1,6 @@
+| entity_type | match_rule | events | entities |
+| --- | --- | --- | --- |
+| film | wikidata_sitelink | 15 | 12 |
+| film | film_title | 6 | 5 |
+| person | person_name | 36 | 32 |
+| person | wikidata_sitelink | 6 | 6 |
