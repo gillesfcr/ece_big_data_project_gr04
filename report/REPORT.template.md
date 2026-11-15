@@ -3,9 +3,8 @@ Template of REPORT.md. Edit THIS file, then run:
     docker compose exec spark python jobs/build_report.py
 Lines {{table:<name>}} are replaced by results/<name>.md.
 
-AI POLICY: see the "Use of AI / LLM tools" section of PROJECT.md for which
-sections were drafted with an AI tool (with the instructor's agreement) and
-reviewed by the group. Every "TO WRITE" block left below is for the group.
+AI POLICY: the explanations, methodology and reasoning of this report must be
+written by the group members only. Every "TO WRITE" block below is for you.
 -->
 
 # ECE big data processing project - Report (gr-04)
@@ -50,13 +49,13 @@ Foreign keys without parent record:
 
 ### 1.4 Methodological explanation
 
-For Data organization. We organized the data into three layers. The "bronze" layer stores the raw IMDb files in Parquet format, without any modifications. We read the files as text and used tabs as column delimiters, as some titles contain quotation marks that could interfere with standard CSV parsing. No malformed rows were detected. The "silver" layer contains cleaned and typed data, while the "gold" layer aggregates the results of our analyses. This structure allows for adjustments to cleaning rules without the need to re-download the data.
+**Data organization.** We organized the data into three layers. The "bronze" layer stores the raw IMDb files in Parquet format, without any modifications. We read the files as text and used tabs as column delimiters, as some titles contain quotation marks that could interfere with standard CSV parsing. No malformed rows were detected. The "silver" layer contains cleaned and typed data, while the "gold" layer aggregates the results of our analyses. This structure allows for adjustments to cleaning rules without the need to re-download the data.
 
-For Missing values. We calculated the rates of missing values directly from the raw data to distinguish between "\N" markers, empty strings, and whitespace. We found that all missing values were represented by "\N". These calculations were performed in a single pass per table to minimize processing overhead.
+**Missing values.** We calculated the rates of missing values directly from the raw data to distinguish between "\N" markers, empty strings, and whitespace. We found that all missing values were represented by "\N". These calculations were performed in a single pass per table to minimize processing overhead.
 
-And for Quality issues. We screened for inconsistent data, such as impossible dates, anomalous durations, or birth years set in the future. We also verified references to individuals or titles that were absent from the tables. To do this, we established several common-sense thresholds (ex : a lifespan exceeding 120 years.)
+**Quality issues.** We screened for inconsistent data, such as impossible dates, anomalous durations, or birth years set in the future. We also verified references to individuals or titles that were absent from the tables. To do this, we established several common-sense thresholds (for example, a lifespan of more than 120 years).
 
-Handling issues, we have categorized anomalies into two groups. Records that cannot be processed such as those with missing keys, duplicates, or non-existent references—are moved to a quarantine table, along with the reason for their rejection. For instance, 7,262 credits refer to individuals who do not appear in the "name.basics" table; these have been set aside while remaining available for tracking purposes.
+**Handling of the issues.** We have categorized anomalies into two groups. Records that cannot be used, such as those with a missing key, duplicates, or a row whose main reference does not exist (credits, alternative titles and episodes pointing to a missing person or title), are moved to a quarantine table, along with the reason for their rejection. For instance, 7,262 credits refer to individuals who do not appear in the "name.basics" table; these have been set aside while remaining available for tracking purposes. Missing references inside a list are handled differently: 405 directors and 786 writers in "title.crew" (and 67 "knownForTitles" in "name.basics") do not exist, but the rest of the row is still valid, so these rows are kept and flagged.
 For other types of anomalies, the records are retained, and a flag is added to the "dq_flags" column. Only values that are clearly impossible are replaced with "null", while values that are merely suspicious remain unchanged.
 
 A special case involves death dates that precede birth dates. Since it is difficult to determine which date is incorrect, we have removed both values. However, we observed that 18 out of 28 such cases likely involve dates from the pre-Christian era (BC). A specific flag, "probable_bc_dates", has been included to identify these instances.
@@ -246,7 +245,6 @@ There are, however, some exceptions among famous duos. Certain directors and act
 We also verified that these findings are not dependent on the method used to calculate the benchmark. While the specific values shift when using a "leave-one-out" approach, the relative ranking between the different groups remains unchanged.
 
 Finally, we observe that almost all average residuals are negative (only first collaborations are slightly positive). This can be attributed to the fact that our benchmark is based on the directors' and actors' previous work—projects that often already achieved strong results. Consequently, their historical average is quite high. For this reason, we have focused primarily on comparing the differences between groups rather than concentrating on absolute values.
-
 
 ### 5.3 Methodological explanation
 
