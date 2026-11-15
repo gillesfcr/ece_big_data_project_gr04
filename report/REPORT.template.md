@@ -125,7 +125,33 @@ At least three languages:
 
 ### 2.9 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+#### Common choices
+
+Before answering the questions, we apply a few common rules: we only keep feature films of at least 40 minutes (the official standard used by the Oscars, AFI, and BFI), and for the rating-based questions (Q4, Q7, Q8) only films that have at least 1,000 votes so small sample sizes do not skew the ratings. A successful movie needs both a rating of 7.0 or higher and at least 10,000 votes to prove real popularity.
+
+#### Question by question
+
+For the first question, we compared the duration of each feature film to that of other films within the same genre. For this, we used the z-score: a film is considered atypical if its duration deviates by more than 3 standard deviations from the mean for its genre. If a film belongs to multiple genres, it is analyzed within each one.
+
+We excluded films with a duration exceeding 24 hours from the calculation, as some IMDb duration entries are either incorrect or pertain to experimental films. Without this exclusion, these extreme values would skew the mean and standard deviation.
+
+We also tested two other methods based on the median (MAD and IQR), which identified a significantly higher number of atypical films (approximately 26,000 and 30,000, respectively). Ultimately, we opted for the z-score, as it provides a standard approach for pinpointing the most extreme cases.
+
+For Q2, we measure the popularity of a genre in a year by the total number of IMDb votes of its feature films released that year, from 1980 to 2025. The number of votes shows how many people watched and rated the films. Counting the number of films would favour genres with many small productions that nobody watches, and the average rating says if a genre is liked, not if it is popular.
+
+For Q3, we compare the three most popular genres each year against all others, examining their share of total votes, their share of the total number of films, the number of votes per film, and their average rating (weighted by the number of votes).
+
+Across the 46 years studied, the top three genres account for 44.7% of all votes and 43.6% of all films. Their popularity is therefore primarily driven by their greater prevalence, rather than by a significantly higher number of votes per film. They also achieve slightly higher ratings, an average of +0.13, and rank higher in 35 out of the 46 years. Finally, the "Drama" genre appears in the top three every single year.
+
+For Q5, we only include series that have at least 3 seasons of 10 episodes or more. Furthermore, only episodes with at least 10 votes are compared, to prevent extreme ratings resulting from a small number of voters. The "latest season" is determined prior to applying this filter, ensuring that recent seasons with fewer ratings are not excluded. If multiple episodes share the highest or lowest rating, all of them must be in the expected seasons. In the end, this leaves us with 410 series.
+
+For Q4, we look for directors with just one masterpiece. We select those who have exactly one film rated 8.0 or above, and at least two other films with an average rating of 6.0 or below. Requiring at least two other films avoids mistaking a single coincidence for a real gap in quality, and we exclude the masterpiece from that average so it does not pull the score up.
+
+For Q6, we identify actors who succeed in multiple languages using the movie's original language from Wikidata (property P364). We avoided IMDb's title.akas table because it lists translated release versions rather than original languages and is often empty. We merge variants like American and British English into English, and we only keep single-language films so one bilingual movie does not falsely make an actor count as multilingual. Even though this excludes 596 interesting international co-productions, it gives us a clean list of actors with hits in two or more, and three or more, languages.
+
+For Q7, we look for actors whose careers peaked early by analyzing careers lasting at least 20 years with 15 or more films, split chronologically into three equal parts. An actor is selected if their highest-rated movie is in the first third and their early average is higher than their late average, proving a real decline rather than just one lucky debut. We also require at least three films in both the first and last parts so a single late cameo does not skew the result. A linear regression could measure this trend too, but it is harder to interpret and too sensitive to isolated movies.
+
+For Q8, we study multi-talented people who have held at least two roles among actor, director, writer, and producer. For each person, we compare their average rating when working a single role against movies where they take on multiple roles at once. Comparing someone to themselves neutralizes their natural talent level, though we have to keep in mind that this only shows correlation: people often wear multiple hats on personal passion projects, which might explain the slightly better ratings (6.27 vs 6.23 on average).
 
 ## 3. Data enrichment
 
@@ -193,11 +219,41 @@ Late events and rows dropped by the watermark:
 
 ### 4.1 Late arriving data
 
-> TO WRITE (group): explanation of the chosen method to deal with late arriving data.
+#### Chosen method
+
+To handle delayed data properly, we group events using the actual Wikipedia edit timestamp rather than when Spark receives them, ensuring late edits still go into the right time window. We use a 2-minute watermark, meaning once Spark sees an event at time T, it waits up to two minutes for older events before closing those windows, writing the results, and freeing up memory. Late events are still saved in our raw output table, which does not use a watermark, but windowed aggregations drop them if their window has already closed and count them as dropped rows.
+
+#### What we observed
+
+In our test, we intentionally delayed 2% of events by 5 minutes: 32 late events were sent, and 8 were dropped by the windows.
+
+#### Trade-offs
+
+Using a longer watermark would save more events, but it would also use more memory and delay results. Since 50% of events arrive within 12 seconds and 99% within 26 seconds, 2 minutes is a very safe compromise.
 
 ### 4.2 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+#### Architecture
+
+Our streaming pipeline flows from the Wikimedia SSE stream to a Python producer, through Kafka, and into Spark Structured Streaming. Using Kafka as a buffer separates data collection from processing and allows Spark to resume without losing any data if it crashes or restarts. We parse the incoming JSON with an explicit schema instead of inferring it, which is faster, more stable, and prevents unexpected fields from breaking the job.
+
+#### Matching Wikipedia edits to IMDb
+
+To enrich the stream with IMDb data, we use a stream-static broadcast join, sending the small, unchanging IMDb lookup table to every worker node rather than doing a heavy stream-stream join.
+
+We match Wikipedia pages to IMDb in three ways, from strictest to broadest:
+
+- Exact title matches using Wikidata links
+- Page titles formatted as "Title (YYYY film)"
+- Person names with at least two words, to avoid false matches like "Paris" or "John"
+
+#### Windows and outputs
+
+We track activity using 5-minute tumbling windows to count edits by type, and 10-minute sliding windows (updating every 5 minutes) to follow top edited entities and smooth out sudden spikes, while logging performance metrics every 10 seconds.
+
+#### Alternatives considered and trade-offs
+
+We rejected fuzzy matching because it creates too many false positives, and we avoided using processing time since it puts delayed events into the wrong time windows.
 
 ## 5. Open question
 
