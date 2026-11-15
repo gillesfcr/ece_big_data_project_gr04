@@ -1102,17 +1102,17 @@ The results show, first of all, that working together multiple times does not gu
 
 This discrepancy can be explained by a selection effect: duos often decide to work together again precisely because their first film was successful. Subsequent films then tend to revert to more typical performance levels. This pattern holds true across all decades and genres. The decline is notably smaller in the *film noir* genre (-0.07) and more pronounced in science fiction (-0.43).
 
-There are, however, some exceptions among famous duos. Certain directors and actors achieve consistently strong results across multiple films—for instance, John Ford and John Wayne (+0.70) or Akira Kurosawa and Takashi Shimura (+0.66). Conversely, some long-running comedy series perform below expectations. Such cases are therefore quite specific and do not represent the majority of collaborations.
+There are, however, some exceptions among famous duos. Certain directors and actors achieve consistently strong results across multiple films, for instance John Ford and John Wayne (+0.70) or Akira Kurosawa and Takashi Shimura (+0.66). Conversely, some long-running comedy series perform below expectations. Such cases are therefore quite specific and do not represent the majority of collaborations.
 
 We also verified that these findings are not dependent on the method used to calculate the benchmark. While the specific values shift when using a "leave-one-out" approach, the relative ranking between the different groups remains unchanged.
 
-Finally, we observe that almost all average residuals are negative (only first collaborations are slightly positive). This can be attributed to the fact that our benchmark is based on the directors' and actors' previous work—projects that often already achieved strong results. Consequently, their historical average is quite high. For this reason, we have focused primarily on comparing the differences between groups rather than concentrating on absolute values.
+Finally, we observe that almost all average residuals are negative (only first collaborations are slightly positive). This can be attributed to the fact that our benchmark is based on the directors' and actors' previous work, projects that often already achieved strong results. Consequently, their historical average is quite high. For this reason, we have focused primarily on comparing the differences between groups rather than concentrating on absolute values.
 
 ### 5.3 Methodological explanation
 
 To study duos and their collaborations, we included only feature films with at least 1,000 votes on IMDb, ensuring the ratings were sufficiently reliable. We then linked directors to actors using the "title.crew" and "title.principals" tables, excluding instances where a director acted in their own film. Collaborations are categorized chronologically (first, second, third, etc.), with all collaborations from the fifth onwards grouped together.
 
-To measure the impact of these collaborations, we calculated a baseline rating based on the previous work of both the director and the actor. The residual—the difference between the film’s actual rating and this baseline—indicates whether the film performed better (a positive value) or worse than expected. We considered only prior films to avoid incorporating information that would not have been available at the time of each film's release.
+To measure the impact of these collaborations, we calculated a baseline rating based on the previous work of both the director and the actor. The residual, which is the difference between the film’s actual rating and this baseline, indicates whether the film performed better (a positive value) or worse than expected. We considered only prior films to avoid incorporating information that would not have been available at the time of each film's release.
 
 For our comparisons, we focused on duos who worked together at least twice. We compared their first collaboration to subsequent ones, using duos who collaborated only once as a benchmark. We also examined variations across different decades and film genres.
 
