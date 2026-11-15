@@ -21,6 +21,14 @@ See [PROJECT.md](PROJECT.md) to reproduce every result of this report.
 
 {{table:prep_top5_null_columns}}
 
+Most of these columns are empty, but that does not necessarily mean there is an issue with the data. In reality, some columns are only populated in specific situations. For example, the "endYear" column applies exclusively to television series; therefore, it remains empty for films, short films, and individual episodes. Similarly, "deathYear" is left blank for individuals who are still alive.
+
+The "attributes" field (in "title.akas") contains optional text used by IMDb solely to provide further detail regarding certain alternative titles. The "job" field (in "title.principals") is used to specify the roles of certain members of the technical crew. For actors, the names of the characters they portray are generally listed directly.
+
+Conversely, the "birthYear" column shows a significant lack of information, as 95.7% of individuals have no recorded birth year. This is primarily because the database includes millions of people who worked in technical roles, for whom IMDb may not necessarily possess biographical information.
+
+It can therefore be concluded that a large number of null values does not necessarily mean that a column is useless.
+
 ### 1.3 Other data quality issues
 
 Row counts of the raw files:
@@ -41,7 +49,18 @@ Foreign keys without parent record:
 
 ### 1.4 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+**Data organization.** We organized the data into three layers. The "bronze" layer stores the raw IMDb files in Parquet format, without any modifications. We read the files as text and used tabs as column delimiters, as some titles contain quotation marks that could interfere with standard CSV parsing. No malformed rows were detected. The "silver" layer contains cleaned and typed data, while the "gold" layer aggregates the results of our analyses. This structure allows for adjustments to cleaning rules without the need to re-download the data.
+
+**Missing values.** We calculated the rates of missing values directly from the raw data to distinguish between "\N" markers, empty strings, and whitespace. We found that all missing values were represented by "\N". These calculations were performed in a single pass per table to minimize processing overhead.
+
+**Quality issues.** We screened for inconsistent data, such as impossible dates, anomalous durations, or birth years set in the future. We also verified references to individuals or titles that were absent from the tables. To do this, we established several common-sense thresholds (for example, a lifespan of more than 120 years).
+
+**Handling of the issues.** We have categorized anomalies into two groups. Records that cannot be used, such as those with a missing key, duplicates, or a row whose main reference does not exist (credits, alternative titles and episodes pointing to a missing person or title), are moved to a quarantine table, along with the reason for their rejection. For instance, 7,262 credits refer to individuals who do not appear in the "name.basics" table; these have been set aside while remaining available for tracking purposes. Missing references inside a list are handled differently: 405 directors and 786 writers in "title.crew" (and 67 "knownForTitles" in "name.basics") do not exist, but the rest of the row is still valid, so these rows are kept and flagged.
+For other types of anomalies, the records are retained, and a flag is added to the "dq_flags" column. Only values that are clearly impossible are replaced with "null", while values that are merely suspicious remain unchanged.
+
+A special case involves death dates that precede birth dates. Since it is difficult to determine which date is incorrect, we have removed both values. However, we observed that 18 out of 28 such cases likely involve dates from the pre-Christian era (BC). A specific flag, "probable_bc_dates", has been included to identify these instances.
+
+While we could have deleted all records containing anomalies, doing so would have resulted in a significant loss of potentially valid data. For example, some credits published after an individual's death simply correspond to posthumous works. Furthermore, we opted against replacing missing values with estimates, as we lacked sufficiently reliable information. Finally, dates from the pre-Christian era were not automatically corrected, due to a lack of certainty.
 
 ## 2. Data exploration
 
@@ -134,7 +153,15 @@ Samples:
 
 ### 3.1 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+Enriched content : For each genre and each year between 1980 and 2025, we selected the 10 films with the highest number of votes on IMDb, totaling 7,186 unique films. We also retrieved the 3 primary contributors for each film, amounting to 10,934 individuals. We chose to rank the films based on their vote count rather than their average rating, to prevent a film with very few votes but an excellent rating from appearing at the top of the list.
+
+Source : We used Wikipedia and Wikidata to gather supplementary information. These platforms allow for the direct retrieval of pages for films and individuals using their IMDb identifiers (tconst and nconst). We opted for this approach over searching by title, which could yield incorrect results due to remakes or similar titles. Other sources, such as TMDb or OMDb, were considered but would have required an API key.
+
+Data collection : Queries were executed using Python, without utilizing Spark. To avoid overloading Wikimedia servers, we batched the requests and incorporated pauses between calls. We also implemented a retry mechanism to handle potential server errors. Finally, each response is saved to disk to prevent redundant queries during future executions.
+
+Processing with Spark : All steps following the download are performed using Spark. The JSON files are read according to a pre-defined schema, and no formatting errors were detected. For films, we extract the synopsis from the plot section or, if that is unavailable, from the article's introduction. For individuals, we use the introduction from their Wikipedia page. We then remove extraneous wiki-formatted elements (such as links, references, tables, and HTML) using regular expressions. Each result also includes a "lineage" field, which allows for tracing the exact source of the text, as well as an "enrichment_note" field to flag any potentially missing information.
+
+Results and limitations : We successfully retrieved a synopsis for 88.6% of the films (6,366 out of 7,186) and a biography for 84.6% of the credited principals (18,196 out of 21,512 film-person pairs). For 391 films, we used the introduction in place of a synopsis. The missing information is primarily due to the lack of a link between Wikidata and IMDb, or the absence of an English-language Wikipedia article. While a dedicated wiki parser would have been more precise, its use was not feasible given the project's constraints.
 
 ## 4. Streaming data processing
 
@@ -176,7 +203,22 @@ Late events and rows dropped by the watermark:
 
 ### 5.1 Question
 
-> TO WRITE (group): the question, why it is interesting, additional data required (if any).
+Do director-actor pairs make better films when they work together again?
+
+Film history is full of famous duos (Kurosawa and Mifune, Ford and Wayne,
+Scorsese and De Niro) and it is often said that a director and an actor who
+know each other well make better films together. We wanted to check if this
+is true in general, and not only for the famous examples that everybody
+remembers. The difficulty is that good directors and good actors make good
+films anyway, so a pair can look great just because both people are talented.
+The question is therefore whether working together again adds something
+compared with what we would expect from the two people.
+
+No additional data was needed: the question only uses IMDb (title.basics,
+title.ratings, title.crew for the directors and title.principals for the
+actors and actresses). It still needs several joins between these tables, a
+window over the films of each pair to number the collaborations, and windows
+over the career of each person to compute the baseline.
 
 ### 5.2 Results
 
@@ -192,8 +234,25 @@ Late events and rows dropped by the watermark:
 
 {{table:open_q_top_pairs}}
 
-> TO WRITE (group): key takeaways.
+Key takeaways.
+
+The results show, first of all, that working together multiple times does not guarantee better films. The first film from a recurring duo tends to perform better than expected (+0.07), whereas subsequent films fall below expectations on average (-0.18). Only 41% of these follow-up collaborations perform better than anticipated, compared to 55% for the initial collaborations.
+
+This discrepancy can be explained by a selection effect: duos often decide to work together again precisely because their first film was successful. Subsequent films then tend to revert to more typical performance levels. This pattern holds true across all decades and genres. The decline is notably smaller in the *film noir* genre (-0.07) and more pronounced in science fiction (-0.43).
+
+There are, however, some exceptions among famous duos. Certain directors and actors achieve consistently strong results across multiple films—for instance, John Ford and John Wayne (+0.70) or Akira Kurosawa and Takashi Shimura (+0.66). Conversely, some long-running comedy series perform below expectations. Such cases are therefore quite specific and do not represent the majority of collaborations.
+
+We also verified that these findings are not dependent on the method used to calculate the benchmark. While the specific values shift when using a "leave-one-out" approach, the relative ranking between the different groups remains unchanged.
+
+Finally, we observe that almost all average residuals are negative (only first collaborations are slightly positive). This can be attributed to the fact that our benchmark is based on the directors' and actors' previous work—projects that often already achieved strong results. Consequently, their historical average is quite high. For this reason, we have focused primarily on comparing the differences between groups rather than concentrating on absolute values.
 
 ### 5.3 Methodological explanation
 
-> TO WRITE (group): methodology and why it was chosen, alternatives considered and trade-offs.
+To study duos and their collaborations, we included only feature films with at least 1,000 votes on IMDb, ensuring the ratings were sufficiently reliable. We then linked directors to actors using the "title.crew" and "title.principals" tables, excluding instances where a director acted in their own film. Collaborations are categorized chronologically (first, second, third, etc.), with all collaborations from the fifth onwards grouped together.
+
+To measure the impact of these collaborations, we calculated a baseline rating based on the previous work of both the director and the actor. The residual—the difference between the film’s actual rating and this baseline—indicates whether the film performed better (a positive value) or worse than expected. We considered only prior films to avoid incorporating information that would not have been available at the time of each film's release.
+
+For our comparisons, we focused on duos who worked together at least twice. We compared their first collaboration to subsequent ones, using duos who collaborated only once as a benchmark. We also examined variations across different decades and film genres.
+
+Finally, several methodological decisions were made. We moved away from an initial "leave-one-out" approach, as it inadvertently included films released after the one being studied. Instead, we prioritized earlier films, while still running the original method to ensure the results remained consistent. Note that this approach excludes newcomers who have no other films in the dataset. While a regression-based model might have offered greater precision, it would also have been significantly more complex to compute using Spark.
+
